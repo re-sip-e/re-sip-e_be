@@ -1,10 +1,25 @@
-### User Story Implemented
+## Pull request type
 
-### Describe Features Added/Changed
+Please check the type of change your PR introduces:
 
-### Describe Tests Added/Changed
+- [ ] Bugfix
+- [ ] Feature
+- [ ] Code style update (formatting, renaming)
+- [ ] Refactoring (no functional changes, no api changes)
+- [ ] Build related changes
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Other (please describe):
 
-### Checklist before requesting a review
+## Problem/feature
 
-- [ ] Added features have thorough tests written for their functionality?
-- [ ] All Tests Passing?
+_What problem are you trying to solve?_
+
+_Issue Number?_
+Fixes # <insert issue #>
+
+## Checklist
+
+- [ ] Code compiles correctly
+- [ ] Tests for the changes have been added (for bug fixes/features)
+- [ ] All tests passing
+- [ ] Extended the README / documentation, if necessary
