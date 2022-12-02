@@ -18,7 +18,7 @@ Example Query w/ All Available Fields:
 
 ```
 query {
-  drinks(barId:1) {
+  drinks(barId: 1) {
     id
     name
     imgUrl
@@ -67,13 +67,131 @@ Example Response:
             "createdAt": "2022-12-02T01:46:06Z",
             "updatedAt": "2022-12-02T01:46:06Z",
           },
-          (...etc)
+          **etc...**
         ]
       },
-      (...etc)
+      **etc...**
     ]
   }
 }
 ```
 
+---
+
+### Get A Single Drink
+
+Example Query w/ All Available Fields:
+
+```
+query {
+  drink(id: 1) {
+    id
+    name
+    img_url
+    steps
+    ingredients {
+      name
+      quantity
+      unit
+    }
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "drink": {
+      "id": "1",
+      "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+      "steps": "Stir into glass over ice, garnish and serve.",
+      "name": "Negroni",
+      "createdAt": "2022-12-02T03:21:12Z",
+      "updatedAt": "2022-12-02T03:21:12Z",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "quantity": "1 oz ",
+          "createdAt": "2022-12-02T03:22:28Z",
+          "updatedAt": "2022-12-02T03:22:28Z"
+        },
+        {
+          "name": "Campari",
+          "quantity": "1 oz ",
+          "createdAt": "2022-12-02T03:22:44Z",
+          "updatedAt": "2022-12-02T03:22:44Z"
+        },
+        {
+          "name": "Sweet Vermouth",
+          "quantity": "1 oz ",
+          "createdAt": "2022-12-02T03:22:57Z",
+          "updatedAt": "2022-12-02T03:22:57Z"
+        }
+      ]
+    }
+  }
+}
+```
+
+---
+
 ### Get Search Result Drinks
+
+Example Query w/ All Available Fields:
+
+```
+query {
+  apiDrinks(query: "negroni") {
+    id
+    name
+    img_url
+    steps
+    ingredients {
+      name
+      quantity
+      unit
+    }
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "apiDrinks": [
+      {
+        "id": "11003",
+        "name": "Negroni",
+        "steps": "Stir into glass over ice, garnish and serve.",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+        "ingredients": [
+            {
+              "name": "Gin",
+              "quantity": 1.0,
+              "unit": "oz"
+            },
+            {
+              "name": "Campari",
+              "quantity": 1.0,
+              "unit": "oz"
+            },
+            **etc...**
+        ]
+      },
+      **etc...**
+    ]
+  }
+}
+```
+
+---
+
+### Get Single API Drink
+
+**TO DO**
+
+---
