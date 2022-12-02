@@ -7,11 +7,17 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    field :drinks, [Types::DrinkType], null: false do
+      argument :drink_name, String, required: false
     end
+
+    def drinks(drink_name:nil)
+      if drink_name
+        CocktailFacade.by_name(drink_name)
+      else
+        Drink.all
+      end
+    end
+
   end
 end

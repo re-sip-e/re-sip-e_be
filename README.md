@@ -5,3 +5,19 @@
 ---
 
 ## Description:
+
+## GraphQL Queries
+
+### get drinks
+
+Available fields:
+
+```
+createdAt: ISO8601DateTime!
+id: ID!
+imgUrl: String
+ingredients: [Ingredient!]!
+name: String
+steps: String
+updatedAt: ISO8601DateTime!
+```
