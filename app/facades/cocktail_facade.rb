@@ -13,7 +13,7 @@ class CocktailFacade
       ingredients.map! do |ingredient|
         Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
       end
-      Drink.new(name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
+      Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
     end
   end
 end
