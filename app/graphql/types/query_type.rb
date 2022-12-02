@@ -8,15 +8,12 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :drinks, [Types::DrinkType], null: false do
-      argument :drink_name, String, required: false
+      argument :bar_id, ID, required: true
     end
 
-    def drinks(drink_name:nil)
-      if drink_name
-        CocktailFacade.by_name(drink_name)
-      else
-        Drink.all
-      end
+    def drinks(bar_id:)
+      bar = Bar.find(bar_id)
+      bar.drinks
     end
 
     field :drink, Types::DrinkType, null: false do
@@ -27,5 +24,12 @@ module Types
       Drink.find(id)
     end
 
+    field :api_drinks, [Types::DrinkType], null: true do
+      argument :query, String, required: true
+    end
+
+    def api_drinks(query:)
+      CocktailFacade.by_name(query)
+    end
   end
 end
