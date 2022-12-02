@@ -19,5 +19,13 @@ module Types
       end
     end
 
+    field :drink, Types::DrinkType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def drink(id:)
+      Drink.find(id)
+    end
+
   end
 end
