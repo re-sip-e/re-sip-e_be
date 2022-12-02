@@ -113,19 +113,22 @@ Example Response:
       "ingredients": [
         {
           "name": "Gin",
-          "quantity": "1 oz ",
+          "quantity": 1.0,
+          "unit": "oz",
           "createdAt": "2022-12-02T03:22:28Z",
           "updatedAt": "2022-12-02T03:22:28Z"
         },
         {
           "name": "Campari",
-          "quantity": "1 oz ",
+          "quantity": 1.0,
+          "unit": "oz",
           "createdAt": "2022-12-02T03:22:44Z",
           "updatedAt": "2022-12-02T03:22:44Z"
         },
         {
           "name": "Sweet Vermouth",
-          "quantity": "1 oz ",
+          "quantity": 1.0,
+          "unit": "oz",
           "createdAt": "2022-12-02T03:22:57Z",
           "updatedAt": "2022-12-02T03:22:57Z"
         }
