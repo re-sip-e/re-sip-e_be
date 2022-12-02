@@ -5,3 +5,34 @@
 ---
 
 ## Description:
+
+## GraphQL Queries
+
+GraphQL Endpoint URL: `https://re-sip-e-be.fly.dev/graphql`
+
+---
+
+### Get a bar's drinks
+
+Example Query:
+
+```
+query {
+  drinks(barId:1) {
+    id
+    name
+    imgUrl
+    steps
+    createdAt
+    updatedAt
+    ingredients {
+      id
+      name
+      quantity
+      unit
+      createdAt
+      updatedAt
+    }
+  }
+}
+```
