@@ -12,9 +12,9 @@ GraphQL Endpoint URL: `https://re-sip-e-be.fly.dev/graphql`
 
 ---
 
-### Get a bar's drinks
+### Get a Bar's Drinks
 
-Example Query:
+Example Query w/ All Available Fields:
 
 ```
 query {
@@ -36,3 +36,44 @@ query {
   }
 }
 ```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "drinks": [
+      {
+        "id": "1",
+        "name": "Negroni",
+        "steps": "Stir into glass over ice, garnish and serve.",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+        "createdAt": "2022-12-02T01:46:06Z",
+        "updatedAt": "2022-12-02T01:46:06Z",
+        "ingredients": [
+          {
+            "id": "5",
+            "name": "Gin",
+            "quantity": 1.0,
+            "unit": "oz",
+            "createdAt": "2022-12-02T01:46:06Z",
+            "updatedAt": "2022-12-02T01:46:06Z",
+          },
+          {
+            "id": "8",
+            "name": "Campari",
+            "quantity": 1.0,
+            "unit": "oz",
+            "createdAt": "2022-12-02T01:46:06Z",
+            "updatedAt": "2022-12-02T01:46:06Z",
+          },
+          (...etc)
+        ]
+      },
+      (...etc)
+    ]
+  }
+}
+```
+
+### Get Search Result Drinks
