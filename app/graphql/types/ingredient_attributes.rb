@@ -1,4 +1,4 @@
 class Types::IngredientAttributes < Types::BaseInputObject
-    argument :name, String, required: true
-    argument :quantity, String, required: true
+    argument :name, String, required: false
+    argument :quantity, String, required: false
 end

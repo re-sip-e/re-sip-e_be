@@ -7,7 +7,7 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :drinks, [Types::DrinkType], null: false do
+    field :drinks, [Types::Drink], null: false do
       argument :bar_id, ID, required: true
     end
 
@@ -16,7 +16,7 @@ module Types
       bar.drinks
     end
 
-    field :drink, Types::DrinkType, null: false do
+    field :drink, Types::Drink, null: false do
       argument :id, ID, required: true
     end
 
@@ -24,12 +24,20 @@ module Types
       Drink.find(id)
     end
 
-    field :api_drinks, [Types::DrinkType], null: true do
+    field :api_drinks, [Types::Drink], null: true do
       argument :query, String, required: true
     end
 
     def api_drinks(query:)
       CocktailFacade.by_name(query)
+    end
+
+    field :api_drink, Types::Drink, null: true do
+      argumeent :id, ID, required: true
+    end
+
+    def api_drink(id:)
+    CocktailFacade.drink_by_id(id)
     end
   end
 end

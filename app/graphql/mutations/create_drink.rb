@@ -21,46 +21,47 @@ class Mutations::CreateDrink < Mutations::BaseMutation
 #   }
 # }
 
-  argument :ingredients, [Types::IngredientAttributes]
-  argument :name, String, required: true
-  argument :steps, String, required: true
-  argument :img_url, String, required: true
-  argument :bar_id, ID, required: true
+  argument :ingredients, [Types::IngredientAttributes], required: false
+  argument :name, String, required: false
+  argument :steps, String, required: false
+  argument :img_url, String, required: false
+  argument :bar_id, ID, required: false
 
-  type Types::DrinkType
-  # field :drink, Types::DrinkType, null: false
-  # field :errors, [String], null: false
+  # type Types::DrinkType
+  field :drink, Types::Drink
+  field :errors, [String]
 
-  def resolve(ingredients:, name:, steps:, img_url:, bar_id:)
-    binding.pry
-    drink_ingredients = ingredients.map do |ingredient|
-      binding.pry
+  def resolve(ingredients:, name:nil, steps:, img_url:, bar_id:)
+
+    ingredients.map! do |ingredient|
       Ingredient.new(ingredient.to_h)
-      ## Code working to this point as of Friday Night
     end
     
     new_drink = Drink.new(
+      bar_id: bar_id,
       name: name,
       steps: steps,
-      img_url: img_url,
-      ingredients: drink_ingredients
+      ingredients: ingredients,
+      img_url: img_url
     )
-
+    
     if new_drink.save
       {
         drink: new_drink,
         errors: []
       }
     else
+      errors = new_drink.errors.full_messages
+      ingredients.each do |ingredient|
+        ingredient.errors.full_messages.each do |ingredient_error_message|
+          errors << ingredient_error_message
+        end
+      end
       {
         drink: nil,
-        errors: new_drink.errors.full_messages
+        errors: errors
       }
     end
-
   end
 
-  # def before_create(_record)
-    
-  # end
 end

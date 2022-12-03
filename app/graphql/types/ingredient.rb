@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  class IngredientType < Types::BaseObject
+  class Ingredient < Types::BaseObject
     field :id, ID, null: false
     field :name, String
     field :drink_id, Integer

@@ -16,4 +16,8 @@ class CocktailFacade
       Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
     end
   end
+
+  def self.cocktail_by_id(id)
+    
+  end
 end
