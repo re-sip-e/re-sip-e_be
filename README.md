@@ -6,7 +6,7 @@
 
 ## Description:
 
-## GraphQL Queries
+## GraphQL Queries & Mutations
 
 GraphQL Endpoint URL: `https://re-sip-e-be.fly.dev/graphql`
 
@@ -89,10 +89,14 @@ query {
     name
     img_url
     steps
+    createdAt
+    updatedAt
     ingredients {
       name
       quantity
       unit
+      createdAt
+      updatedAt
     }
   }
 }
@@ -140,7 +144,7 @@ Example Response:
 
 ---
 
-### Get Search Result Drinks
+### Get API Search Result Drinks
 
 Example Query w/ All Available Fields:
 
@@ -195,6 +199,160 @@ Example Response:
 
 ### Get Single API Drink
 
+Example Query w/ All Available Fields:
+
+```
+query {
+  apiDrink(id: 11003){
+    id
+    name
+    steps
+    imgUrl
+    ingredients {
+      name
+      quantity
+      unit
+    }
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "apiDrink": {
+      "id": "11003",
+      "name": "Negroni",
+      "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+      "steps": "Stir into glass over ice, garnish and serve.",
+      "ingredients": [
+        {
+          "name": "Gin",
+          "quantity": 1.0,
+          "unit": "oz"
+        },
+        {
+          "name": "Campari",
+          "quantity": 1.0,
+          "unit": "oz"
+        },
+        {
+          "name": "Sweet Vermouth",
+          "quantity": 1.0,
+          "unit": "oz"
+        }
+      ]
+    }
+  }
+}
+```
+
+---
+
+### Create a Drink / Save Drink to Database
+
+Example Mutation with Reponse Returning All Available Fields:
+
+```
+mutation {
+  createDrink(input:{
+    name:"Negroni"
+    imgUrl:"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
+    steps:"Stir into glass over ice, garnish and serve."
+    barId:1
+    ingredients:[
+      {
+        name:"Gin"
+        quantity:1.0
+        unit:"oz"
+      }
+      {
+        name:"Campari"
+        quantity:1.0
+        unit:"oz"
+      }
+      {
+        name:"Sweet Vermouth"
+        quantity:1.0
+        unit:"oz"
+      }
+    ]
+  }){
+		drink{
+      id
+      name
+      steps
+      imgUrl
+      createdAt
+      updatedAt
+      ingredients{
+        name
+        id
+        quantity
+        unit
+        createdAt
+        updatedAt
+      }
+    }
+    errors
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "createDrink": {
+      "drink": {
+        "id": "3",
+        "name": "Negroni",
+        "steps": "Stir into glass over ice, garnish and serve.",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+        "createdAt": "2022-12-03T20:44:25Z",
+        "updatedAt": "2022-12-03T20:44:25Z",
+        "ingredients": [
+          {
+            "name": "Gin",
+            "id": "5",
+            "quantity": 1.0,
+            "unit": "oz",
+            "createdAt": "2022-12-03T20:44:25Z",
+            "updatedAt": "2022-12-03T20:44:25Z"
+          },
+          {
+            "name": "Campari",
+            "id": "6",
+            "quantity": 1.0,
+            "unit": "oz",
+            "createdAt": "2022-12-03T20:44:25Z",
+            "updatedAt": "2022-12-03T20:44:25Z"
+          },
+          {
+            "name": "Sweet Vermouth",
+            "id": "7",
+            "quantity": 1.0,
+            "unit": "oz",
+            "createdAt": "2022-12-03T20:44:25Z",
+            "updatedAt": "2022-12-03T20:44:25Z"
+          }
+        ]
+      },
+      "errors": []
+    }
+  }
+}
+```
+
+---
+
+### Update Existing Drink
+
 **TO DO**
 
 ---
+
+
