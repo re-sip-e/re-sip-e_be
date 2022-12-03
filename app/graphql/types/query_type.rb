@@ -33,11 +33,11 @@ module Types
     end
 
     field :api_drink, Types::Drink, null: true do
-      argumeent :id, ID, required: true
+      argument :id, ID, required: true
     end
 
     def api_drink(id:)
-    CocktailFacade.drink_by_id(id)
+      CocktailFacade.cocktail_by_id(id)
     end
   end
 end
