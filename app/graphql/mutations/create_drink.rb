@@ -51,15 +51,9 @@ class Mutations::CreateDrink < Mutations::BaseMutation
         errors: []
       }
     else
-      errors = new_drink.errors.full_messages
-      ingredients.each do |ingredient|
-        ingredient.errors.full_messages.each do |ingredient_error_message|
-          errors << ingredient_error_message
-        end
-      end
       {
         drink: nil,
-        errors: errors
+        errors: new_drink.errors.full_messages
       }
     end
   end
