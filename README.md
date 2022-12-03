@@ -349,7 +349,19 @@ Example Response:
 
 ---
 
+### Create Drink w/ Errors
+
+**TO DO**
+
+---
+
 ### Update Existing Drink
+
+**TO DO**
+
+---
+
+### Update Existing Drink w/ Errors
 
 **TO DO**
 
