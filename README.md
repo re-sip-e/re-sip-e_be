@@ -159,7 +159,6 @@ query {
     ingredients {
       name
       quantity
-      unit
     }
   }
 }
@@ -179,13 +178,11 @@ Example Response:
         "ingredients": [
             {
               "name": "Gin",
-              "quantity": 1.0,
-              "unit": "oz"
+              "quantity": "1 oz"
             },
             {
               "name": "Campari",
-              "quantity": 1.0,
-              "unit": "oz"
+              "quantity": "1 oz"
             },
             **etc...**
         ]
