@@ -380,7 +380,51 @@ Example Response:
 
 ### Create Drink w/ Errors
 
-**TO DO**
+If a drink is created and required fields are missing, validation errors will be generated. Drinks and ingredients are required to have names. A drink also needs a barId to be created.
+
+Example Mutation w/ Validation Errors:
+
+```
+muation {
+  createDrink(input:{
+    name:""
+    imgUrl:"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
+    steps:"Shake it up and strin."
+    ingredients: [
+      {
+        name:"Whiskey"
+        quantity: "1 oz"
+      }
+      {
+        quantity: "2 tsp"
+      }
+    ]
+  }) {
+    drink {
+      name
+      img_url
+    }
+    errors
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "createDrink": {
+      "drink": null,
+      "errors": [
+        "Ingredients is invalid",
+        "Bar must exist",
+        "Name can't be blank"
+      ]
+    }
+  }
+}
+```
 
 ---
 
