@@ -3,4 +3,5 @@ class Bar < ApplicationRecord
   
   has_many :bar_users
   has_many :users, through: :bar_users
+  has_many :drinks
 end
