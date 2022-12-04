@@ -1,5 +1,5 @@
 module Types
-  class Drink < Types::BaseObject
+  class DrinkType < Types::BaseObject
     field :id, ID, null: true
     field :name, String
     field :img_url, String
