@@ -209,7 +209,6 @@ query {
     ingredients {
       name
       quantity
-      unit
     }
   }
 }
