@@ -1,4 +1,5 @@
 class CocktailFacade
+
   def self.three_random
     cocktails = CocktailService.get_three_random
     cocktails.map do |cocktail|
@@ -16,4 +17,5 @@ class CocktailFacade
       Drink.new(id: cocktail[:drinks][0][:idDrink], name: cocktail[:drinks][0][:strDrink], img_url: cocktail[:drinks][0][:strDrinkThumb], steps: cocktail[:drinks][0][:strInstructions], ingredients: ingredients)
     end
   end
+
 end

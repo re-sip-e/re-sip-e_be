@@ -1,0 +1,166 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.thecocktaildb.com/api/json/v1/1/random.php
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Dec 2022 20:30:18 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.4.33
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kwklLaxZl%2BwjzqSs%2BBrOXA%2BhdRZGMQFFYvsveu7e7QtJR8f8yEJxZTvxuk7Z7%2FrqXYCCdE7vxNE4YagGTxG1Ws1PyjhK%2BQ7Up1m12x33eWC7fCocvJ6H2BqbEgF7DNXyCPCF0A0EmOg%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 77474c9718b0e966-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"drinks":[{"idDrink":"15106","strDrink":"Apello","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Other\/Unknown","strIBA":null,"strAlcoholic":"Non
+        alcoholic","strGlass":"Collins Glass","strInstructions":"Stirr. Grnish with
+        maraschino cherry.","strInstructionsES":"Mezclar. Decorar con cereza marrasquino.","strInstructionsDE":"R\u00fchren.
+        Mit Maraschinokirsche garnieren.","strInstructionsFR":null,"strInstructionsIT":"Versare
+        tutti gli ingredienti in un mixing glass. Mescolate.\r\nGuarnire con una ciliegia
+        al maraschino.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/uptxtv1468876415.jpg","strIngredient1":"Orange
+        juice","strIngredient2":"Grapefruit juice","strIngredient3":"Apple juice","strIngredient4":"Maraschino
+        cherry","strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"4
+        cl ","strMeasure2":"3 cl ","strMeasure3":"1 cl ","strMeasure4":"1 ","strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2016-07-18
+        22:13:35"}]}'
+  recorded_at: Sun, 04 Dec 2022 20:30:18 GMT
+- request:
+    method: get
+    uri: https://www.thecocktaildb.com/api/json/v1/1/random.php
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Dec 2022 20:30:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.4.33
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=eadrvxU48h%2FCw0pohHbNhnlnYE%2BVzi0A0wx0yyPTpwNcR5e%2FbA74qz6IdQZH2LKSGON7%2BpJ0%2BR0vqK71aJVqgIXDmicRQMbttXiurOwpGk1LUFWCiOsUNxt%2BAo3jWPtyMwlwjLxRLn4%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 77474c98893ce922-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"drinks":[{"idDrink":"11462","strDrink":"Harvey Wallbanger","strDrinkAlternate":null,"strTags":"IBA,ContemporaryClassic","strVideo":null,"strCategory":"Ordinary
+        Drink","strIBA":"Contemporary Classics","strAlcoholic":"Alcoholic","strGlass":"Collins
+        glass","strInstructions":"Stir the vodka and orange juice with ice in the
+        glass, then float the Galliano on top. Garnish and serve.","strInstructionsES":null,"strInstructionsDE":"Wodka
+        und Orangensaft mit Eis im Glas verr\u00fchren, dann den Galliano darauf verteilen.
+        Garnieren und servieren.","strInstructionsFR":null,"strInstructionsIT":"Mescolare
+        la vodka e il succo d''arancia con ghiaccio nel bicchiere, successivamente
+        versa nel drink il Galliano. Guarnire e servire.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/7os4gs1606854357.jpg","strIngredient1":"Vodka","strIngredient2":"Galliano","strIngredient3":"Orange
+        juice","strIngredient4":null,"strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"1
+        oz ","strMeasure2":"1\/2 oz ","strMeasure3":"4 oz ","strMeasure4":null,"strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":"https:\/\/pxhere.com\/en\/photo\/1435855","strImageAttribution":"rawpixel.com","strCreativeCommonsConfirmed":"Yes","dateModified":"2017-09-02
+        17:28:45"}]}'
+  recorded_at: Sun, 04 Dec 2022 20:30:19 GMT
+- request:
+    method: get
+    uri: https://www.thecocktaildb.com/api/json/v1/1/random.php
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Dec 2022 20:30:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.4.33
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=HdO58AKEquA%2BC2WY%2BlE0eZF%2FDz2v5plfkfKWRDQdc15N4XJX2U9pjpnDDou5cP8dmQ%2Bmm5i0S5KWI%2Fhr%2FYXzYe6Zi%2BVGRmQ77W3fTJmhp7broih25JGBewDfM2LortWPwi%2FZqytW3AY%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 77474c99fa93e93e-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"drinks":[{"idDrink":"12706","strDrink":"Imperial Cocktail","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Cocktail","strIBA":null,"strAlcoholic":"Alcoholic","strGlass":"Cocktail
+        glass","strInstructions":"Shake with ice and strain into cocktail glass.","strInstructionsES":null,"strInstructionsDE":"Mit
+        Eis sch\u00fctteln und in ein Cocktailglas abseihen.","strInstructionsFR":null,"strInstructionsIT":"Shakerare
+        con ghiaccio e filtrare nella coppetta da cocktail.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/bcsj2e1487603625.jpg","strIngredient1":"Lime
+        juice","strIngredient2":"Gin","strIngredient3":"Aperol","strIngredient4":null,"strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"4
+        cl ","strMeasure2":"2 cl ","strMeasure3":"4 cl ","strMeasure4":null,"strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2017-02-20
+        15:13:45"}]}'
+  recorded_at: Sun, 04 Dec 2022 20:30:19 GMT
+recorded_with: VCR 6.1.0
