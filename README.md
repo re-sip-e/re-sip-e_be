@@ -498,12 +498,6 @@ Example Response:
 
 ---
 
-### Update Existing Drink w/ Errors
-
-
-
----
-
 ### Get Bar Info
 
 Example Query w/ Available Fields
