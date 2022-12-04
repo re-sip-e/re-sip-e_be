@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 04 Dec 2022 18:31:48 GMT
+      - Sun, 04 Dec 2022 20:11:00 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -33,27 +33,28 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3HRxmIkkDg6bA7h2nleJu%2FYg573Cj1TCwHK9DeezlZ%2BW8h9bF0T%2FWAHtEMk1txvAslX%2Fv7DiN6BnW5Yof46299CzchL24WS6K0PQuAahdEGxHblg7uE0HEUvyYa%2FOvBX7E1skUAhyY0%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ol7%2BWJ13imNHUmqONcmDIgshseitldJ4QZbOAY0lZXSd8ioFDa3VVKawQeXAOXnvOeEsqkMLFD3%2BzI0erJV5u1JfotP7NzBBG9Tv3abBQ7Jt3s4JEPqG7Xfdc2j4aIu840WEdLIHFo0%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 77469efc99a2aa91-DFW
+      - 7747304efa130c27-DFW
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"drinks":[{"idDrink":"13042","strDrink":"Sunny Holiday Punch","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Punch
-        \/ Party Drink","strIBA":null,"strAlcoholic":"Optional alcohol","strGlass":"Punch
-        bowl","strInstructions":"Combine all ingredients in a punch bowl.","strInstructionsES":null,"strInstructionsDE":"Alle
-        Zutaten in einer Bowle vermengen.","strInstructionsFR":null,"strInstructionsIT":"Unisci
-        tutti gli ingredienti in una ciotola da punch.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/rywtwy1468924758.jpg","strIngredient1":"Pineapple
-        juice","strIngredient2":"Club soda","strIngredient3":"Orange juice","strIngredient4":"Lemon","strIngredient5":"Berries","strIngredient6":"Champagne","strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"46
-        oz chilled ","strMeasure2":"28 oz ","strMeasure3":"6 oz frozen ","strMeasure4":"1
-        ","strMeasure5":"2 cups ","strMeasure6":"1 bottle ","strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2016-07-19
-        11:39:18"}]}'
-  recorded_at: Sun, 04 Dec 2022 18:31:48 GMT
+      string: '{"drinks":[{"idDrink":"13328","strDrink":"Chocolate Milk","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Shot","strIBA":null,"strAlcoholic":"Alcoholic","strGlass":"Shot
+        Glass","strInstructions":"Put the milk in the bottom, pour the Liquer on top
+        and add the dash of amaretto. Do not mix. SLAM IT!","strInstructionsES":null,"strInstructionsDE":"Die
+        Milch auf den Boden geben, den Lik\u00f6r dar\u00fcber gie\u00dfen und den
+        Spritzer Amaretto hinzuf\u00fcgen. Nicht mischen. SLAM IT!","strInstructionsFR":null,"strInstructionsIT":"Mettere
+        sul fondo il latte, versarvi sopra il liquore e unire la spruzzata di amaretto.\r\nNon
+        mescolare.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/j6q35t1504889399.jpg","strIngredient1":"Chocolate
+        liqueur","strIngredient2":"Milk","strIngredient3":"Amaretto","strIngredient4":null,"strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"1\/2
+        shot ","strMeasure2":"1\/2 shot ","strMeasure3":"1 dash ","strMeasure4":null,"strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2017-09-08
+        17:49:59"}]}'
+  recorded_at: Sun, 04 Dec 2022 20:11:00 GMT
 - request:
     method: get
     uri: https://www.thecocktaildb.com/api/json/v1/1/random.php
@@ -73,7 +74,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 04 Dec 2022 18:31:48 GMT
+      - Sun, 04 Dec 2022 20:11:00 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -87,31 +88,28 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=8pdr%2BEZpX52scNJOkAnre0uwabjCaq8%2FdfJR6UDEPMK7MR1g05DAcVlvGFCz41iwxIkvwIXy8mJd%2BFMkdy4yPCG1mSXzb9I6y658x3bZ9QSondt23f6XI6knx7OuVEPMP0o%2BCgtc6pI%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=AENKxFDlp3A1hWLy2xQHsXU16JeFFbryK57pt%2F26KNRLDKZbOazdxwzXPG4dlBAesf0ZuXU8sXN7x3geb9IaXmuWRRe9bBERsba4gPSUzTPv2zjrwhFmaChQmkT7I4%2B%2BYtjf%2FISEleo%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 77469efdfd510bb8-DFW
+      - 774730510cbde7f7-DFW
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"drinks":[{"idDrink":"17268","strDrink":"Blue Hurricane","strDrinkAlternate":null,"strTags":"Colourful,
-        Blue","strVideo":null,"strCategory":"Cocktail","strIBA":null,"strAlcoholic":"Alcoholic","strGlass":"Highball
-        glass","strInstructions":"If each part is 1\/2 oz then use about 2.5 cups
-        of ice.\r\n\r\nBlend it all together. \r\nDrink it with a big straw if you
-        have one.\r\n\r\n","strInstructionsES":null,"strInstructionsDE":"Wenn jedes
-        Teil 1,5 cl. ist, dann verwenden Sie etwa 2,5 Tassen Eis. Alles zusammenmischen.
-        Trink es mit einem gro\u00dfen Strohhalm, wenn du einen hast.","strInstructionsFR":null,"strInstructionsIT":"Se
-        ogni parte \u00e8 15ml, usa circa 2,5 tazze di ghiaccio e mescola tutto insieme.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/nwx02s1515795822.jpg","strIngredient1":"Rum","strIngredient2":"Dark
-        Rum","strIngredient3":"Passoa","strIngredient4":"Blue Curacao","strIngredient5":"Sweet
-        and Sour","strIngredient6":"Ice","strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"4
-        parts","strMeasure2":"2 parts","strMeasure3":"1 part","strMeasure4":"1 part","strMeasure5":"6
-        parts","strMeasure6":"cubes","strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2018-01-12
-        22:23:42"}]}'
-  recorded_at: Sun, 04 Dec 2022 18:31:48 GMT
+      string: '{"drinks":[{"idDrink":"12692","strDrink":"Lassi Khara","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Other\/Unknown","strIBA":null,"strAlcoholic":"Non
+        alcoholic","strGlass":"Highball Glass","strInstructions":"Blend (frappe) in
+        blender until frothy. Add torn curry leaves and serve cold.","strInstructionsES":null,"strInstructionsDE":"Im
+        Mixer zu einem schaumigen Ganzen verr\u00fchren (Frappe). Zerrissene Currybl\u00e4tter
+        hinzuf\u00fcgen und kalt servieren.","strInstructionsFR":null,"strInstructionsIT":"Frullare
+        (frappe) nel frullatore fino a ottenere un composto spumoso.Aggiungere le
+        foglie di curry strappate e servire freddo.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/m1suzm1487603970.jpg","strIngredient1":"Yoghurt","strIngredient2":"Water","strIngredient3":"Salt","strIngredient4":"Asafoetida","strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"1
+        cup ","strMeasure2":"2 cups cold ","strMeasure3":"1 tsp ","strMeasure4":"1
+        pinch ","strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2017-02-20
+        15:19:30"}]}'
+  recorded_at: Sun, 04 Dec 2022 20:11:00 GMT
 - request:
     method: get
     uri: https://www.thecocktaildb.com/api/json/v1/1/random.php
@@ -131,7 +129,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 04 Dec 2022 18:31:48 GMT
+      - Sun, 04 Dec 2022 20:11:01 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -145,26 +143,23 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3jR0dhTmfXn2sJC0sRlkqxxu1PzmXZ2%2Bs%2BRREZMurKf%2FBcxKMT8fw1pl5gH%2BG500v7GbLsAXDIW35iY%2B7xEzQFKzF2%2BVibLiSCCsmhciIlkQ3ASFafWkiidXTsqc8ePSfrw0AaMf%2BzM%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Jifh%2F1IQ01fULAu2Sebw%2ByqL%2BTeGz22qrEhicuFW7YkrSpjBd9PdSG1gmxoT91u2rV8Ge2pgoCj279yUMVtChhxAwgnMB%2B2jOcI%2FXm%2BRToUCAdGOXjAVXJ%2Btnl7O7zxnok%2BotKMGKsw%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 77469eff5ceaea47-DFW
+      - 774730528920e546-DFW
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"drinks":[{"idDrink":"14888","strDrink":"Zinger","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Soft
-        Drink","strIBA":null,"strAlcoholic":"Alcoholic","strGlass":"Highball glass","strInstructions":"Get
-        a shot glass and pour in three shots of the schnapps. Do the same with the
-        Surge Cola. Then down it like Scheetz would.","strInstructionsES":null,"strInstructionsDE":"Holen
-        Sie sich ein Schnapsglas und geben Sie drei Sch\u00fcsse des Schnapses hinein.
-        Das Gleiche gilt f\u00fcr den Schwall Cola.","strInstructionsFR":null,"strInstructionsIT":"Prendi
-        un bicchierino e versa tre shot di grappa.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/iixv4l1485620014.jpg","strIngredient1":"Peachtree
-        schnapps","strIngredient2":"Surge","strIngredient3":null,"strIngredient4":null,"strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"4
-        shots ","strMeasure2":"4 shots ","strMeasure3":null,"strMeasure4":null,"strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2017-01-28
-        16:13:34"}]}'
-  recorded_at: Sun, 04 Dec 2022 18:31:48 GMT
+      string: '{"drinks":[{"idDrink":"11963","strDrink":"Port Wine Cocktail","strDrinkAlternate":null,"strTags":null,"strVideo":null,"strCategory":"Ordinary
+        Drink","strIBA":null,"strAlcoholic":"Alcoholic","strGlass":"Cocktail glass","strInstructions":"Stir
+        ingredients with ice, strain into a cocktail glass, and serve.","strInstructionsES":null,"strInstructionsDE":"Zutaten
+        mit Eis verr\u00fchren, in ein Cocktailglas abseihen und servieren.","strInstructionsFR":null,"strInstructionsIT":"Mescolare
+        gli ingredienti con ghiaccio, filtrare in una coppetta da cocktail e servire.","strInstructionsZH-HANS":null,"strInstructionsZH-HANT":null,"strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/qruprq1441553976.jpg","strIngredient1":"Port","strIngredient2":"Brandy","strIngredient3":null,"strIngredient4":null,"strIngredient5":null,"strIngredient6":null,"strIngredient7":null,"strIngredient8":null,"strIngredient9":null,"strIngredient10":null,"strIngredient11":null,"strIngredient12":null,"strIngredient13":null,"strIngredient14":null,"strIngredient15":null,"strMeasure1":"2
+        1\/2 oz ","strMeasure2":"1\/2 tsp ","strMeasure3":null,"strMeasure4":null,"strMeasure5":null,"strMeasure6":null,"strMeasure7":null,"strMeasure8":null,"strMeasure9":null,"strMeasure10":null,"strMeasure11":null,"strMeasure12":null,"strMeasure13":null,"strMeasure14":null,"strMeasure15":null,"strImageSource":null,"strImageAttribution":null,"strCreativeCommonsConfirmed":"No","dateModified":"2015-09-06
+        16:39:36"}]}'
+  recorded_at: Sun, 04 Dec 2022 20:11:01 GMT
 recorded_with: VCR 6.1.0
