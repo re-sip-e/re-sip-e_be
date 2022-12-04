@@ -430,7 +430,71 @@ Example Response:
 
 ### Update Existing Drink
 
-**TO DO**
+**Notes:**
+- If ingredients are being updated all ingredients in the drink must be included in the ingredients attribute. This includes any new, updated, or already existing ingredients.
+- The id provided is used to find the drink to be updated. The id itself cannot be updated.
+
+Example Update Mutation:
+
+```
+mutation {
+  updateDrink(input:{
+    id: 3
+    name: "Negroni Sbagliato"
+    steps: "Mix the campari and sweet vermouth in a glass with ice and top with prosecco."
+    ingredients: [
+      {
+        name: "Prosecco"
+        quantity: "1 oz"
+      }
+      {
+        name: "Campari"
+        quantity: "1 oz"
+      }
+      {
+        name: "Sweet Vermouth"
+        quantity: "1 oz"
+      }
+    ]
+  }){
+    drink {
+      id
+      name
+      steps
+      ingredients{
+        name
+      }
+    }
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "updateDrink":{
+      "id": "3",
+      "name": "Negroni Sbagliato",
+      "steps": "Mix the campari and sweet vermouth in a glass with ice and top with prosecco.",
+      "ingredients": [
+        {
+          "name": "Prosecco"
+        }
+        {
+          "name": "Campari"
+        }
+        {
+          "name": "Sweet Vermouth"
+        }
+      ]
+    }
+  }
+}
+```
+
+
 
 ---
 
