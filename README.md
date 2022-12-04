@@ -398,6 +398,8 @@ Example Response:
 
 ### Get Bar Info
 
+Example Query w/ Available Fields
+
 ```
 query {
   bar(id: 1) {
@@ -413,9 +415,31 @@ query {
 }
 ```
 
+Example Response
+
+```JSON
+{
+  "data": {
+    "bar": {
+      "id": "1",
+      "name": "Joe's Bar",
+      "drinkCount": 5,
+      "drinks": {
+        "id": "1",
+        "name": "Negroni",
+        "img_url": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
+      },
+      **etc...**
+    }
+  }
+}
+```
+
 ---
 
 ### Get User Info
+
+Example Query w/ Available Fields
 
 ```
 query {
@@ -428,6 +452,25 @@ query {
       name
       drinkCount
     }
+  }
+}
+```
+
+Example Response:
+
+```JSON
+"data": {
+  "user": {
+    "id": "1",
+    "name": "Joe Schmoe",
+    "barCount": 1,
+    "bars":[
+      {
+        "id": "1",
+        "name": "Joe's Bar",
+        "drinkCount": 5
+      }
+    ]
   }
 }
 ```
