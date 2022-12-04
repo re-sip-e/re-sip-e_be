@@ -16,20 +16,19 @@ RSpec.describe Types::DrinkType, type: :request do
         GQL
       end
 
-      # thoughts on how to make the expected more dynamic?
-      expected = {"data"=>
-      {"threeRandomApiDrinks"=>
-        [{"id"=>"13056",
-          "name"=>"Wine Cooler",
-          "imgUrl"=>"https://www.thecocktaildb.com/images/media/drink/yutxtv1473344210.jpg"},
-         {"id"=>"14306",
-          "name"=>"Amaretto Stone Sour",
-          "imgUrl"=>"https://www.thecocktaildb.com/images/media/drink/xwryyx1472719921.jpg"},
-         {"id"=>"12714",
-          "name"=>"Kiwi Papaya Smoothie",
-          "imgUrl"=>"https://www.thecocktaildb.com/images/media/drink/jogv4w1487603571.jpg"}]}}
+      expected = { "data" =>
+      { "threeRandomApiDrinks" =>
+        [{ "id" => "17065",
+           "name" => "Caribbean Boilermaker",
+           "imgUrl" => "https://www.thecocktaildb.com/images/media/drink/svsxsv1454511666.jpg" },
+         { "id" => "13026",
+           "name" => "Sangria The  Best",
+           "imgUrl" => "https://www.thecocktaildb.com/images/media/drink/vysywu1468924264.jpg" },
+         { "id" => "12724",
+           "name" => "Sweet Bananas",
+           "imgUrl" => "https://www.thecocktaildb.com/images/media/drink/sxpcj71487603345.jpg" }] } }
 
-      post '/graphql', params: {query: get_random}
+      post '/graphql', params: { query: get_random }
       results = JSON.parse(response.body)
 
       expect(results).to eq(expected)
