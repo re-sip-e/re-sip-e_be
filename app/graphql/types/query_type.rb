@@ -24,5 +24,10 @@ module Types
       Drink.find(id)
     end
 
+    field :three_random_api_drinks, [Types::DrinkType], null: true
+
+    def three_random_api_drinks
+      CocktailFacade.three_random
+    end
   end
 end
