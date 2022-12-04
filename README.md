@@ -25,11 +25,14 @@ query {
     steps
     createdAt
     updatedAt
+    bar {
+      id
+      name
+    }
     ingredients {
       id
       name
       quantity
-      unit
       createdAt
       updatedAt
     }
@@ -54,16 +57,14 @@ Example Response:
           {
             "id": "5",
             "name": "Gin",
-            "quantity": 1.0,
-            "unit": "oz",
+            "quantity": "1 oz",
             "createdAt": "2022-12-02T01:46:06Z",
             "updatedAt": "2022-12-02T01:46:06Z",
           },
           {
             "id": "8",
             "name": "Campari",
-            "quantity": 1.0,
-            "unit": "oz",
+            "quantity": "1 oz",
             "createdAt": "2022-12-02T01:46:06Z",
             "updatedAt": "2022-12-02T01:46:06Z",
           },
@@ -91,10 +92,13 @@ query {
     steps
     createdAt
     updatedAt
+    bar {
+      id
+      name
+    }
     ingredients {
       name
       quantity
-      unit
       createdAt
       updatedAt
     }
@@ -117,22 +121,19 @@ Example Response:
       "ingredients": [
         {
           "name": "Gin",
-          "quantity": 1.0,
-          "unit": "oz",
+          "quantity": "1 oz",
           "createdAt": "2022-12-02T03:22:28Z",
           "updatedAt": "2022-12-02T03:22:28Z"
         },
         {
           "name": "Campari",
-          "quantity": 1.0,
-          "unit": "oz",
+          "quantity": "1 oz",
           "createdAt": "2022-12-02T03:22:44Z",
           "updatedAt": "2022-12-02T03:22:44Z"
         },
         {
           "name": "Sweet Vermouth",
-          "quantity": 1.0,
-          "unit": "oz",
+          "quantity": "1 oz",
           "createdAt": "2022-12-02T03:22:57Z",
           "updatedAt": "2022-12-02T03:22:57Z"
         }
@@ -230,21 +231,60 @@ Example Response:
       "ingredients": [
         {
           "name": "Gin",
-          "quantity": 1.0,
-          "unit": "oz"
+          "quantity": "1 oz"
         },
         {
           "name": "Campari",
-          "quantity": 1.0,
-          "unit": "oz"
+          "quantity": "1 oz"
         },
         {
           "name": "Sweet Vermouth",
-          "quantity": 1.0,
-          "unit": "oz"
+          "quantity": "1 oz"
         }
       ]
     }
+  }
+}
+```
+
+---
+
+### Get Three Random API Drink
+
+Example Query
+
+```
+query {
+  threeRandomApiDrinks {
+    id
+    name
+    img_url
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "threeRandomApiDrinks": [
+      {
+        "id": "178345",
+        "name": "Hot Toddy",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/ggx0lv1613942306.jpg"
+      },
+      {
+        "id": "17180",
+        "name": "Aviation",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/trbplb1606855233.jpg"
+      },
+      {
+        "id": "12107",
+        "name": "Salty Dog",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/4vfge01504890216.jpg"
+      }
+    ]
   }
 }
 ```
@@ -265,18 +305,15 @@ mutation {
     ingredients:[
       {
         name:"Gin"
-        quantity:1.0
-        unit:"oz"
+        quantity:"1 oz"
       }
       {
         name:"Campari"
-        quantity:1.0
-        unit:"oz"
+        quantity:"1 oz"
       }
       {
         name:"Sweet Vermouth"
-        quantity:1.0
-        unit:"oz"
+        quantity:"1 oz"
       }
     ]
   }){
@@ -291,7 +328,6 @@ mutation {
         name
         id
         quantity
-        unit
         createdAt
         updatedAt
       }
@@ -318,24 +354,21 @@ Example Response:
           {
             "name": "Gin",
             "id": "5",
-            "quantity": 1.0,
-            "unit": "oz",
+            "quantity": "1 oz",
             "createdAt": "2022-12-03T20:44:25Z",
             "updatedAt": "2022-12-03T20:44:25Z"
           },
           {
             "name": "Campari",
             "id": "6",
-            "quantity": 1.0,
-            "unit": "oz",
+            "quantity": "1 oz",
             "createdAt": "2022-12-03T20:44:25Z",
             "updatedAt": "2022-12-03T20:44:25Z"
           },
           {
             "name": "Sweet Vermouth",
             "id": "7",
-            "quantity": 1.0,
-            "unit": "oz",
+            "quantity": "1 oz",
             "createdAt": "2022-12-03T20:44:25Z",
             "updatedAt": "2022-12-03T20:44:25Z"
           }
@@ -363,8 +396,50 @@ Example Response:
 
 ### Update Existing Drink w/ Errors
 
-**TO DO**
+
 
 ---
+
+### Get Bar Info
+
+```
+query {
+  bar(id: 1) {
+    id
+    name
+    drinkCount
+    drinks {
+      id
+      name
+      img_url
+    }
+  }
+}
+```
+
+---
+
+### Get User Info
+
+```
+query {
+  user(id: 1) {
+    id
+    name
+    barCount
+    bars{
+      id
+      name
+      drinkCount
+    }
+  }
+}
+```
+
+---
+
+
+
+
 
 
