@@ -11,21 +11,21 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
           deleteDrink(input: {
              id: "#{drink1.id}"
            }
-        )
+        ){
+          success
+          errors}}
         GQL
 
 
-      expected = {
-                    "data": {
-                    }
-                  }
+      expected = {:data=>{:deleteDrink=>{:errors=>[], :success=>true}}}
 
       post '/graphql', params: {query: query_delete_drink}
-      result = JSON.parse(response.body)
+      result = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
       expect(result).to eq(expected)
-      expect(Drink.find(drink1.id)).to eq nil
+      expect(Drink.all).to eq([])
+      # expect(Drink.find(drink1.id)).to_not exist
 
     end
 
