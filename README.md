@@ -88,7 +88,7 @@ query {
   drink(id: 1) {
     id
     name
-    img_url
+    imgUrl
     steps
     createdAt
     updatedAt
@@ -154,7 +154,7 @@ query {
   apiDrinks(query: "negroni") {
     id
     name
-    img_url
+    imgUrl
     steps
     ingredients {
       name
@@ -254,7 +254,7 @@ query {
   threeRandomApiDrinks {
     id
     name
-    img_url
+    imgUrl
   }
 }
 ```
@@ -402,7 +402,7 @@ muation {
   }) {
     drink {
       name
-      img_url
+      imgUrl
     }
     errors
   }
@@ -511,7 +511,7 @@ query {
     drinks {
       id
       name
-      img_url
+      imgUrl
     }
   }
 }
@@ -529,7 +529,7 @@ Example Response
       "drinks": {
         "id": "1",
         "name": "Negroni",
-        "img_url": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
       },
       **etc...**
     }

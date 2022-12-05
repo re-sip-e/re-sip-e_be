@@ -16,11 +16,10 @@ RSpec.describe Types::DrinkType, type: :request do
   end
 
   describe 'happy path' do
-    describe 'get one drink for a bar' do
-      it 'can query one drink for a bar' do
+    it 'can query one drink for a bar' do
 
-        def query_drink
-          <<~GQL
+      def query_drink
+        <<~GQL
           query {
             drink(id: "#{@drink_1.id}") {
               id
@@ -42,42 +41,41 @@ RSpec.describe Types::DrinkType, type: :request do
               }
             }
           }
-          GQL
-        end
+        GQL
+      end
 
-        expected = {"data"=>
-                    {"drink"=>
-                      {"id"=>"#{@drink_1.id}",
-                      "name"=>"#{@drink_1.name}",
-                      "imgUrl"=>
-                        "#{@drink_1.img_url}",
-                      "steps"=>"#{@drink_1.steps}",
-                      "createdAt"=>"#{@drink_1.created_at.iso8601}",
-                      "updatedAt"=>"#{@drink_1.updated_at.iso8601}",
-                      "bar"=>{"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>"#{@bar.drink_count}"},
-                      "ingredients"=>
-                        [{"name"=>"#{@ingredient_1.name}",
-                          "quantity"=>"#{@ingredient_1.quantity}",
-                          "createdAt"=>"#{@ingredient_1.created_at.iso8601}",
-                          "updatedAt"=>"#{@ingredient_1.updated_at.iso8601}"},
-                          {"name"=>"#{@ingredient_2.name}",
-                          "quantity"=>"#{@ingredient_2.quantity}",
-                          "createdAt"=>"#{@ingredient_2.created_at.iso8601}",
-                          "updatedAt"=>"#{@ingredient_2.updated_at.iso8601}"},
-                          {"name"=>"#{@ingredient_3.name}",
-                          "quantity"=>"#{@ingredient_3.quantity}",
-                          "createdAt"=>"#{@ingredient_3.created_at.iso8601}",
-                          "updatedAt"=>"#{@ingredient_3.updated_at.iso8601}"}]
-                        }
+      expected = {"data" =>
+                  {"drink" =>
+                    {"id" => "#{@drink_1.id}",
+                     "name" => "#{@drink_1.name}",
+                     "imgUrl" =>
+                      "#{@drink_1.img_url}",
+                     "steps" => "#{@drink_1.steps}",
+                     "createdAt" => "#{@drink_1.created_at.iso8601}",
+                     "updatedAt" => "#{@drink_1.updated_at.iso8601}",
+                     "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=> @bar.drink_count},
+                     "ingredients" =>
+                      [{"name" => "#{@ingredient_1.name}",
+                        "quantity" => "#{@ingredient_1.quantity}",
+                        "createdAt" => "#{@ingredient_1.created_at.iso8601}",
+                        "updatedAt" => "#{@ingredient_1.updated_at.iso8601}"},
+                        {"name" => "#{@ingredient_2.name}",
+                         "quantity" => "#{@ingredient_2.quantity}",
+                         "createdAt" => "#{@ingredient_2.created_at.iso8601}",
+                         "updatedAt" => "#{@ingredient_2.updated_at.iso8601}"},
+                        {"name" => "#{@ingredient_3.name}",
+                         "quantity" => "#{@ingredient_3.quantity}",
+                         "createdAt" => "#{@ingredient_3.created_at.iso8601}",
+                         "updatedAt" => "#{@ingredient_3.updated_at.iso8601}"}]
                       }
                     }
+                  }
 
-        post '/graphql', params: {query: query_drink}
-        result = JSON.parse(response.body)
+      post '/graphql', params: {query: query_drink}
+      result = JSON.parse(response.body)
 
-        expect(response).to be_successful
-        expect(result).to eq(expected)
-      end
+      expect(response).to be_successful
+      expect(result).to eq(expected)
     end
   end
 
