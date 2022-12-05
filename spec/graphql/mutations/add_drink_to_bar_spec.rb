@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'adding a drink to a bar', type: :request do
   describe 'happy path' do
     it 'can add a drink with ingredients to a bar' do
+
       @bar = create(:bar)
 
       def create_drink_mutation
@@ -69,7 +70,7 @@ RSpec.describe 'adding a drink to a bar', type: :request do
 
       expect(created_drink.ingredients[2].name).to eq("Sweet Vermouth")
       expect(created_drink.ingredients[2].quantity).to eq("1 oz")
-      
+
       expected_result = {
         data: {
           createDrink: {

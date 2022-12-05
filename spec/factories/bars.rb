@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :bar do
-    name { Faker::Restaurant.name }
+    name { Faker::Restaurant.name } 
   end
 end
