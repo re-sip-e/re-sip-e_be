@@ -35,7 +35,6 @@ module Types
     end
 
     def bar(id:)
-      # require "pry"; binding.pry
       Bar.find(id)
     end
   end
