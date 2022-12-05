@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Types::DrinkType, type: :request do
 
-  before :each do
-
-  end
-
   describe 'happy path' do
     it 'can find drinks by name from api', :vcr do
 
@@ -25,7 +21,7 @@ RSpec.describe Types::DrinkType, type: :request do
         }
         GQL
       end
-  # require "pry"; binding.pry
+
       expected = {"data"=>
         {"apiDrinks"=>
           [{"id"=>"11003",

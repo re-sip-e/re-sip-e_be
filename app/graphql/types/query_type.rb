@@ -29,9 +29,16 @@ module Types
     end
 
     def api_drinks(query:)
-# require "pry"; binding.pry
       CocktailFacade.by_name(query)
     end
+
+    field :api_drink, Types::DrinkType, null: true do
+     argument :id, ID, required: true
+   end
+
+   def api_drink(id:)
+     CocktailFacade.cocktail_by_id(id)
+   end
 
   end
 end
