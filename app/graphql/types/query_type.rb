@@ -29,5 +29,14 @@ module Types
     def three_random_api_drinks
       CocktailFacade.three_random
     end
+
+    field :bar, Types::BarType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def bar(id:)
+      # require "pry"; binding.pry
+      Bar.find(id)
+    end
   end
 end
