@@ -24,5 +24,14 @@ module Types
       Drink.find(id)
     end
 
+    field :api_drinks, [Types::DrinkType], null: false do
+      argument :query, String, required: true
+    end
+
+    def api_drinks(query:)
+# require "pry"; binding.pry
+      CocktailFacade.by_name(query)
+    end
+
   end
 end
