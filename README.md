@@ -529,7 +529,7 @@ Example Response
       "drinks": {
         "id": "1",
         "name": "Negroni",
-        "img_url": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
       },
       **etc...**
     }
