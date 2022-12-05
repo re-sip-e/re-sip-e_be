@@ -4,4 +4,8 @@ class User < ApplicationRecord
 
   has_many :bar_users
   has_many :bars, through: :bar_users
+
+  def bar_count
+    bars.count
+  end
 end

@@ -35,8 +35,15 @@ module Types
     end
 
     def bar(id:)
-      # require "pry"; binding.pry
       Bar.find(id)
+    end
+
+    field :user, Types::UserType, null:false do 
+      argument :id, ID, required: true
+    end
+
+    def user(id:)
+      User.find(id)
     end
   end
 end
