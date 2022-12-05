@@ -9,6 +9,7 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :bar_count, Integer 
+    field :bars, [Types::BarType], null:false
 
     def bar_count
       object.bar_count
