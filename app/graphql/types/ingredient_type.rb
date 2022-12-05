@@ -1,5 +1,5 @@
 module Types
-  class Ingredient < Types::BaseObject
+  class IngredientType < Types::BaseObject
     field :id, ID, null: false
     field :name, String
     field :drink_id, Integer
