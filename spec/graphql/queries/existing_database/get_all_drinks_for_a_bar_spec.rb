@@ -50,7 +50,7 @@ RSpec.describe Types::DrinkType, type: :request do
           "steps" => "#{@drink_1.steps}",
           "createdAt" => "#{@drink_1.created_at.iso8601}",
           "updatedAt" => "#{@drink_1.updated_at.iso8601}",
-          "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>"#{@bar.drink_count}"},
+          "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=> @bar.drink_count},
           "ingredients" =>
         [{"name" => "#{@ingredient_1.name}",
           "quantity" => "#{@ingredient_1.quantity}",
@@ -70,7 +70,7 @@ RSpec.describe Types::DrinkType, type: :request do
           "steps" => "#{@drink_2.steps}",
           "createdAt" => "#{@drink_2.created_at.iso8601}",
           "updatedAt" => "#{@drink_2.updated_at.iso8601}",
-          "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>"#{@bar.drink_count}"},
+          "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>@bar.drink_count},
           "ingredients" =>
          [{"name" => "#{@ingredient_4.name}",
            "quantity" => "#{@ingredient_4.quantity}",
