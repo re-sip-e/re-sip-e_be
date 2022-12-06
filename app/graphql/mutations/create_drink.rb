@@ -1,5 +1,5 @@
 class Mutations::CreateDrink < Mutations::BaseMutation
-  argument :ingredients, [Types::IngredientAttributes], required: false
+  argument :ingredients, [Types::IngredientInputType], required: false
   argument :name, String, required: false
   argument :steps, String, required: false
   argument :img_url, String, required: false

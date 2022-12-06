@@ -16,7 +16,7 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
             steps: "Updated Steps"
             ingredients: [
               {
-                name: "#{ingredients[0].name}
+                name: "#{ingredients[0].name}"
                 quantity: "#{ingredients[0].quantity}"
               }
               {
@@ -39,6 +39,7 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
                 quantity
               }
             }
+            errors
           }
         }
       GQL
@@ -46,24 +47,27 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
       expected = {
         data: {
           updateDrink: {
-            id: drink.id.to_s,
-            name: "Updated Name",
-            imgUrl: drink.img_url,
-            steps: "Updated Steps",
-            ingredients: [
-              {
-                name: ingredient[0].name,
-                quantity: ingredient[0].quantity
-              },
-              {
-                name: "Campari",
-                quantity: "1 oz"
-              },
-              {
-                name: "Updated Ingredient Name",
-                quantity: ingredient[2].quantity
-              }
-            ]
+            drink: {
+              id: drink.id.to_s,
+              name: "Updated Name",
+              imgUrl: drink.img_url,
+              steps: "Updated Steps",
+              ingredients: [
+                {
+                  name: ingredients[0].name,
+                  quantity: ingredients[0].quantity
+                },
+                {
+                  name: "Campari",
+                  quantity: "1 oz"
+                },
+                {
+                  name: "Updated Ingredient Name",
+                  quantity: ingredients[2].quantity
+                }
+              ]
+            },
+            errors: []
           }
         }
       }
@@ -84,12 +88,13 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
       expect(updated_drink.steps).to_not eq(drink.steps)
       expect(updated_drink.steps).to eq("Updated Steps")
 
-      expect(updated_drink.ingredients[0]).to eq(ingredients[0])
+      expect(updated_drink.ingredients[0].name).to eq(ingredients[0].name)
+      expect(updated_drink.ingredients[0].quantity).to eq(ingredients[0].quantity)
 
-      expect(updated_dirnk.ingredients[1]).to_not eq(ingredients[1])
+      expect(updated_drink.ingredients[1]).to_not eq(ingredients[1])
       expect(updated_drink.ingredients[1].name).to eq("Campari")
       expect(updated_drink.ingredients[1].quantity).to eq("1 oz")
-      
+
       expect(updated_drink.ingredients[2].name).to_not eq(ingredients[2].name)
       expect(updated_drink.ingredients[2].name).to eq("Updated Ingredient Name")
       expect(updated_drink.ingredients[2].quantity).to eq(ingredients[2].quantity)
