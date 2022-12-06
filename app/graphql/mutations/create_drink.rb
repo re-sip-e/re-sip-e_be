@@ -1,14 +1,14 @@
 class Mutations::CreateDrink < Mutations::BaseMutation
-  argument :ingredients, [Types::IngredientInputType], required: false
-  argument :name, String, required: false
-  argument :steps, String, required: false
-  argument :img_url, String, required: false
-  argument :bar_id, ID, required: false
+  argument :ingredients, [Types::IngredientInputType], required: true
+  argument :name, String, required: true
+  argument :steps, String, required: true
+  argument :img_url, String, required: true
+  argument :bar_id, ID, required: true
 
   field :drink, Types::DrinkType
   field :errors, [String]
 
-  def resolve(ingredients:, name:nil, steps:, img_url:, bar_id:)
+  def resolve(ingredients:, name:, steps:, img_url:, bar_id:)
 
     ingredients.map! do |ingredient|
       Ingredient.new(ingredient.to_h)
