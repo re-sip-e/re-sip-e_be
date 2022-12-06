@@ -431,6 +431,7 @@ Example Response:
 ### Update Existing Drink
 
 **Notes:**
+
 - If ingredients are being updated all ingredients in the drink must be included in the ingredients attribute. This includes any new, updated, or already existing ingredients.
 - The id provided is used to find the drink to be updated. The id itself cannot be updated.
 
@@ -441,6 +442,7 @@ mutation {
   updateDrink(input:{
     id: 3
     name: "Negroni Sbagliato"
+    imgUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_730,h_913/k%2FPhoto%2FRecipes%2F2021-11-Negroni-Sbagliato%2F211025-PAMU-THEKITCHN-0085"
     steps: "Mix the campari and sweet vermouth in a glass with ice and top with prosecco."
     ingredients: [
       {
@@ -460,11 +462,14 @@ mutation {
     drink {
       id
       name
+      imgUrl
       steps
       ingredients{
         name
+        quantity
       }
     }
+    errors
   }
 }
 ```
@@ -474,27 +479,32 @@ Example Response:
 ```JSON
 {
   "data": {
-    "updateDrink":{
-      "id": "3",
-      "name": "Negroni Sbagliato",
-      "steps": "Mix the campari and sweet vermouth in a glass with ice and top with prosecco.",
-      "ingredients": [
-        {
-          "name": "Prosecco"
-        }
-        {
-          "name": "Campari"
-        }
-        {
-          "name": "Sweet Vermouth"
-        }
-      ]
+    "updateDrink": {
+      "drink": {
+        "id": "3",
+        "name": "Negroni Sbagliato",
+        "imgUrl": "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_730,h_913/k%2FPhoto%2FRecipes%2F2021-11-Negroni-Sbagliato%2F211025-PAMU-THEKITCHN-0085",
+        "steps": "Mix the campari and sweet vermouth in a glass with ice and top with prosecco.",
+        "ingredients": [
+          {
+            "name": "Prosecco",
+            "quantity": "1 oz"
+          }
+          {
+            "name": "Campari",
+            "quantity": "1 oz"
+          }
+          {
+            "name": "Sweet Vermouth",
+            "quantity": "1 oz"
+          }
+        ]
+      },
+      "errors":[]
     }
   }
 }
 ```
-
-
 
 ---
 
@@ -578,9 +588,3 @@ Example Response:
 ```
 
 ---
-
-
-
-
-
-
