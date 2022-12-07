@@ -19,7 +19,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
             },
             {
               "name": "Campari",
-              "quantity": "1.5 oz"
+              "quantity": "1 oz"
             },
             {
               "name": "Sweet Vermouth",
@@ -38,8 +38,8 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
       JSON
 
       mutation = <<~GQL
-        mutation($input: DrinkUpdateInput!){
-          drinkCreate(inpute: $input){
+        mutation($input: DrinkCreateInput!){
+          drinkCreate(input: $input){
             drink{
               id
               name
@@ -57,14 +57,14 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
         }
       GQL
 
-      post '/graphql', params: {query: create_drink_mutation, variables: gql_vars}
+      post '/graphql', params: {query: mutation, variables: gql_vars}
 
       expect(response).to be_successful
 
       result = JSON.parse(response.body, symbolize_names: true)
       created_drink = Drink.last
 
-      expect(created_drink.bar).to eq(@bar)
+      expect(created_drink.bar).to eq(bar)
 
       expect(created_drink.name).to eq("Negroni")
       expect(created_drink.img_url).to eq("https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg")
@@ -82,7 +82,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
 
       expected_result = {
         data: {
-          createDrink: {
+          drinkCreate: {
             drink: {
               id: created_drink.id.to_s,
               name: created_drink.name,
