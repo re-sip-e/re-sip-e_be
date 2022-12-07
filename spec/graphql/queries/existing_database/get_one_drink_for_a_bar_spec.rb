@@ -108,7 +108,7 @@ RSpec.describe Types::DrinkType, type: :request do
   end
 
   describe 'edge case' do
-    it 'does not receive and error when a field is requested errently twice' do
+    it 'does not receive error when a field is requested errently twice' do
       def query_double_fields_drink
         <<~GQL
           query {
