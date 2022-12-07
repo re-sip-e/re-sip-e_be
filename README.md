@@ -291,44 +291,57 @@ Example Response:
 
 Example Mutation with Reponse Returning All Available Fields:
 
+Input JSON Drink Object:
+
+```JavaScript
+const newDrink = {
+  "name": "Negroni",
+  "steps": "Stir into glass over ice, garnish and serve.",
+  "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+  "barId": 1,
+  "ingredients": [
+    {
+      "name": "Gin",
+      "quantity": "1 oz"
+    },
+    {
+      "name": "Campari",
+      "quantity": "1 oz"
+    },
+    {
+      "name": "Sweet Vermouth",
+      "quantity": "1 oz"
+    }
+  ]
+};
 ```
-mutation {
-  createDrink(input:{
-    name:"Negroni"
-    imgUrl:"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
-    steps:"Stir into glass over ice, garnish and serve."
-    barId:1
-    ingredients:[
-      {
-        name:"Gin"
-        quantity:"1 oz"
-      }
-      {
-        name:"Campari"
-        quantity:"1 oz"
-      }
-      {
-        name:"Sweet Vermouth"
-        quantity:"1 oz"
-      }
-    ]
-  }){
+
+GraphQL Variables:
+
+```JavaScript
+const variables = {
+  "input":{
+    "drinkInput": newDrink
+  }
+}
+```
+
+GraphQL Mutation:
+
+```
+mutation($input: DrinkCreateInput!){
+  drinkCreate(input: $input){
     drink{
       id
       name
       steps
       imgUrl
-      createdAt
-      updatedAt
       ingredients{
-        name
         id
+        name
         quantity
-        createdAt
-        updatedAt
       }
     }
-    errors
   }
 }
 ```
@@ -338,39 +351,30 @@ Example Response:
 ```JSON
 {
   "data": {
-    "createDrink": {
+    "drinkCreate": {
       "drink": {
         "id": "3",
         "name": "Negroni",
         "steps": "Stir into glass over ice, garnish and serve.",
         "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
-        "createdAt": "2022-12-03T20:44:25Z",
-        "updatedAt": "2022-12-03T20:44:25Z",
         "ingredients": [
           {
-            "name": "Gin",
             "id": "5",
-            "quantity": "1 oz",
-            "createdAt": "2022-12-03T20:44:25Z",
-            "updatedAt": "2022-12-03T20:44:25Z"
+            "name": "Gin",
+            "quantity": "1 oz"
           },
           {
-            "name": "Campari",
             "id": "6",
-            "quantity": "1 oz",
-            "createdAt": "2022-12-03T20:44:25Z",
-            "updatedAt": "2022-12-03T20:44:25Z"
+            "name": "Campari",
+            "quantity": "1 oz"
           },
           {
-            "name": "Sweet Vermouth",
             "id": "7",
-            "quantity": "1 oz",
-            "createdAt": "2022-12-03T20:44:25Z",
-            "updatedAt": "2022-12-03T20:44:25Z"
+            "name": "Sweet Vermouth",
+            "quantity": "1 oz"
           }
         ]
-      },
-      "errors": []
+      }
     }
   }
 }
@@ -380,51 +384,7 @@ Example Response:
 
 ### Create Drink w/ Errors
 
-If a drink is created and required fields are missing, validation errors will be generated. Drinks and ingredients are required to have names. A drink also needs a barId to be created.
-
-Example Mutation w/ Validation Errors:
-
-```
-muation {
-  createDrink(input:{
-    name:""
-    imgUrl:"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
-    steps:"Shake it up and strin."
-    ingredients: [
-      {
-        name:"Whiskey"
-        quantity: "1 oz"
-      }
-      {
-        quantity: "2 tsp"
-      }
-    ]
-  }) {
-    drink {
-      name
-      imgUrl
-    }
-    errors
-  }
-}
-```
-
-Example Response:
-
-```JSON
-{
-  "data": {
-    "createDrink": {
-      "drink": null,
-      "errors": [
-        "Ingredients is invalid",
-        "Bar must exist",
-        "Name can't be blank"
-      ]
-    }
-  }
-}
-```
+**To Do**
 
 ---
 
@@ -432,44 +392,71 @@ Example Response:
 
 **Notes:**
 
-- If ingredients are being updated all ingredients in the drink must be included in the ingredients attribute. This includes any new, updated, or already existing ingredients.
-- The id provided is used to find the drink to be updated. The id itself cannot be updated.
+- The ID for the drink to be updated should not be passed as part of the drink object. Instead save it as a separate variable and pass it through the base level of the input GQL Variables. See the examples below.
+- Ingredients can either be changed, deleted, or added. Ingredient with an ID passed and a `"_destroy": false"` attribute or no `"_destroy"` key will be updated. Ingredients with an ID and a `"_destroy": true` attribute will be deleted. Ingredients with no id or a null value for ID will create a new ingredient for the drink.
 
-Example Update Mutation:
+Example Input Object:
+
+```JavaScript
+const updatedDrinkId = 3
+
+const updatedDrink = {
+  "name": "Negroni Sbagliato",
+  "steps": "Stir campari and sweet vermouth into glass over ice, top with proesecco, garnish and serve.",
+  "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+  "ingredients": [
+    {
+      "id": "5",
+      "name": "Gin",
+      "quantity": "1 oz",
+      "_destroy": true
+    },
+    {
+      "id": "6",
+      "name": "Campari",
+      "quantity": "1.5 oz"
+    },
+    {
+      "id": "7",
+      "name": "Sweet Vermouth",
+      "quantity": "1.5 oz"
+    },
+    {
+      "id": null,
+      "name": "Prosecco",
+      "quantity": "1.5 oz"
+    }
+  ]
+}
+```
+
+Example GQL Variables Object:
+
+```JavaScript
+{
+  "input": {
+    "id": udpatedDrinkId,
+    "drinkInput": updatedDrink
+  }
+}
+```
+
+Example GQL Mutation:
 
 ```
-mutation {
-  updateDrink(input:{
-    id: 3
-    name: "Negroni Sbagliato"
-    imgUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_730,h_913/k%2FPhoto%2FRecipes%2F2021-11-Negroni-Sbagliato%2F211025-PAMU-THEKITCHN-0085"
-    steps: "Mix the campari and sweet vermouth in a glass with ice and top with prosecco."
-    ingredients: [
-      {
-        name: "Prosecco"
-        quantity: "1 oz"
-      }
-      {
-        name: "Campari"
-        quantity: "1 oz"
-      }
-      {
-        name: "Sweet Vermouth"
-        quantity: "1 oz"
-      }
-    ]
-  }){
-    drink {
+mutation($input: DrinkUpdateInput!){
+  drinkUpdate(input: $input){
+    drink{
       id
       name
-      imgUrl
       steps
+      imgUrl
       ingredients{
+        id
         name
         quantity
       }
     }
-    errors
   }
 }
 ```
@@ -478,29 +465,31 @@ Example Response:
 
 ```JSON
 {
-  "data": {
-    "updateDrink": {
-      "drink": {
+  "data":{
+    "drinkUpdate": {
+      "drink":{
         "id": "3",
         "name": "Negroni Sbagliato",
-        "imgUrl": "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_730,h_913/k%2FPhoto%2FRecipes%2F2021-11-Negroni-Sbagliato%2F211025-PAMU-THEKITCHN-0085",
-        "steps": "Mix the campari and sweet vermouth in a glass with ice and top with prosecco.",
+        "steps": "Stir campari and sweet vermouth into glass over ice, top with proesecco, garnish and serve.",
+        "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
         "ingredients": [
           {
-            "name": "Prosecco",
-            "quantity": "1 oz"
-          }
-          {
+            "id": "6",
             "name": "Campari",
-            "quantity": "1 oz"
-          }
+            "quantity": "1.5 oz"
+          },
           {
+            "id": "7",
             "name": "Sweet Vermouth",
-            "quantity": "1 oz"
+            "quantity": "1.5 oz"
+          },
+          {
+            "id": "8",
+            "name": "Prosecco",
+            "quantity": "1.5 oz"
           }
         ]
-      },
-      "errors":[]
+      }
     }
   }
 }
