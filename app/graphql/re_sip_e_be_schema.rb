@@ -39,7 +39,7 @@ class ReSipEBeSchema < GraphQL::Schema
   end
 
   rescue_from(ActiveRecord::RecordNotFound) do |err, obj, args, ctx, field|
-    raise GraphQL::ExecutionError, "#{field.type.unwrap.graphql_name} not found"
+    raise GraphQL::ExecutionError, "#{err.to_param}"
   end
 
 end
