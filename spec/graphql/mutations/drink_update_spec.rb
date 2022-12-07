@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Mutations::UpdateDrink, type: :request do
+RSpec.describe Mutations::DrinkUpdate, type: :request do
   
   describe 'happy path' do
     it 'updates a drink' do
@@ -11,22 +11,22 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
         {
           "name": "Modified #{drink.name}",
           "steps": "#{drink.steps}",
-          "imgUrl": "#{drink.image_url}",
+          "imgUrl": "#{drink.img_url}",
           "ingredients": [
             {
-              "id": "#{ingredients[0].id}"
+              "id": "#{ingredients[0].id}",
               "name": "#{ingredients[0].name}",
               "quantity": "#{ingredients[0].quantity}",
               "_destroy": true
             },
             {
-              "id": "#{ingredients[1].id}"
+              "id": "#{ingredients[1].id}",
               "name": "#{ingredients[1].name}",
               "quantity": "#{ingredients[1].quantity}",
               "_destroy": true
             },
             {
-              "id": "#{ingredients[2].id}"
+              "id": "#{ingredients[2].id}",
               "name": "#{ingredients[2].name}",
               "quantity": "Modified Quantity"
             },
@@ -67,19 +67,19 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
       GQL
 
       
-      post '/graphql', params: {query: update_drink_mutation, variables: gql_vars}
+      post '/graphql', params: {query: mutation, variables: gql_vars}
       result = JSON.parse(response.body, symbolize_names: true)
       
       updated_drink = Drink.find(drink.id)
 
       expected = {
         data: {
-          updateDrink: {
+          drinkUpdate: {
             drink: {
               id: drink.id.to_s,
               name: "Modified #{drink.name}",
-              imgUrl: drink.img_url,
               steps: drink.steps,
+              imgUrl: drink.img_url,
               ingredients: [
                 {
                   id: ingredients[2].id.to_s,
@@ -92,35 +92,29 @@ RSpec.describe Mutations::UpdateDrink, type: :request do
                   quantity: "New Ingredient Quantity"
                 }
               ]
-            },
-            errors: []
+            }
           }
         }
       }
-      
+
       expect(response).to be_successful
       expect(result).to eq(expected)
 
-      # updated_drink = Drink.find(drink.id)
+      expect(updated_drink.name).to_not eq(drink.name)
+      expect(updated_drink.name).to eq("Modified #{drink.name}")
 
-      # expect(updated_drink.name).to_not eq(drink.name)
-      # expect(updated_drink.name).to eq("Updated Name")
+      expect(updated_drink.img_url).to eq(drink.img_url)
 
-      # expect(updated_drink.img_url).to eq(drink.img_url)
+      expect(updated_drink.steps).to eq(drink.steps)
 
-      # expect(updated_drink.steps).to_not eq(drink.steps)
-      # expect(updated_drink.steps).to eq("Updated Steps")
+      expect(updated_drink.ingredients.length).to eq(2)
 
-      # expect(updated_drink.ingredients[0].name).to eq(ingredients[0].name)
-      # expect(updated_drink.ingredients[0].quantity).to eq(ingredients[0].quantity)
+      expect(updated_drink.ingredients[0].id).to eq(ingredients[2].id)
+      expect(updated_drink.ingredients[0].name).to eq(ingredients[2].name)
+      expect(updated_drink.ingredients[0].quantity).to eq("Modified Quantity")
 
-      # expect(updated_drink.ingredients[1]).to_not eq(ingredients[1])
-      # expect(updated_drink.ingredients[1].name).to eq("Campari")
-      # expect(updated_drink.ingredients[1].quantity).to eq("1 oz")
-
-      # expect(updated_drink.ingredients[2].name).to_not eq(ingredients[2].name)
-      # expect(updated_drink.ingredients[2].name).to eq("Updated Ingredient Name")
-      # expect(updated_drink.ingredients[2].quantity).to eq(ingredients[2].quantity)
+      expect(updated_drink.ingredients[1].name).to eq("New Ingredient")
+      expect(updated_drink.ingredients[1].quantity).to eq("New Ingredient Quantity")
     end
   end
 end

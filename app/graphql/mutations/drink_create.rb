@@ -2,7 +2,7 @@
 
 module Mutations
   class DrinkCreate < BaseMutation
-    description "Creates a new drink"
+    description "Creates a new drink/saves a drink to the database"
 
     field :drink, Types::DrinkType, null: false
 
