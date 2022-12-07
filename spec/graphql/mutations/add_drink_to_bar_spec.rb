@@ -43,9 +43,14 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
             drink{
               id
               name
+              steps
+              imgUrl
+              createdAt
+              updatedAt
               ingredients{
                 id
                 name
+                quantity
               }
             }
           }
