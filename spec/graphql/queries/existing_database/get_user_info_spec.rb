@@ -90,4 +90,63 @@ RSpec.describe Types::UserType, type: :request do
       end
     end
   end
+
+  describe 'sad path' do
+    it 'will return an error if the wrong user id is used' do
+      def query_bad_id_user
+        <<~GQL
+          query {
+            user(id: 9999) {
+              id
+              name
+              barCount
+              createdAt
+            }
+          }
+        GQL
+      end
+
+      expected = { :data => nil,
+                  :errors =>
+                  [{ :message => "Couldn't find User with 'id'=9999",
+                    :locations => [{ :line=>2, :column=>3 }],
+                    :path => ["user"] }] }
+
+      post '/graphql', params: { query: query_bad_id_user }
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
+    end
+
+    it 'will return an error when using the wrong user_id when querying for bars associated to user' do
+      def query_bad_id_user_bars
+        <<~GQL
+          query {
+            user(id: 9999) {
+              id
+              name
+              barCount
+              createdAt
+              bars {
+              id
+              name
+              drinkCount
+              }
+            }
+          }
+        GQL
+      end
+
+      expected = { :data => nil,
+                  :errors =>
+                  [{ :message => "Couldn't find User with 'id'=9999",
+                    :locations => [{ :line=>2, :column=>3 }],
+                    :path => ["user"] }] }
+
+      post '/graphql', params: { query: query_bad_id_user_bars }
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
+    end
+  end
 end
