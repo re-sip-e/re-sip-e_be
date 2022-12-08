@@ -88,4 +88,34 @@ RSpec.describe Types::BarType, type: :request do
     end
   end
 
+  describe 'sad path' do
+    it 'returns an error when requesting info for a bar ID that does not exist' do
+      def query_bad_id_bar
+        <<~GQL
+        query {
+          bar(id: 199) {
+            id
+            name
+            drinkCount
+            drinks{
+              name
+            }
+          }
+        }
+        GQL
+      end
+
+      expected = {:data=>nil,
+      :errors=>
+       [{:message=>"Couldn't find Bar with 'id'=199",
+         :locations=>[{:line=>2, :column=>3}],
+         :path=>["bar"]}]}
+
+      post '/graphql', params: {query: query_bad_id_bar}
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
+    end
+  end
+
 end
