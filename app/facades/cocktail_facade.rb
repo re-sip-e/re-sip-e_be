@@ -45,7 +45,7 @@ class CocktailFacade
       end
       Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
     else
-      raise ActiveRecord::RecordNotFound.new(id)
+      raise ActiveRecord::RecordNotFound.new("Couldn't find Cocktail with 'id'=#{id}")
     end
   end
 end
