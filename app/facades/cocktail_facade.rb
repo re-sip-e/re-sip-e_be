@@ -36,18 +36,28 @@ class CocktailFacade
     end
 
   def self.cocktail_by_id(id)
-    cocktail = CocktailService.get_cocktail_by_id(id)[:drinks].first
-    ingredients = []
-    15.times do |i|
-      if cocktail["strIngredient#{i+1}".to_sym]
-        name = cocktail["strIngredient#{i+1}".to_sym]
-        measurement = cocktail["strMeasure#{i+1}".to_sym]
-        ingredients << { name: name, measurement: measurement }
+    cocktail = CocktailService.get_cocktail_by_id(id)[:drinks]
+    if cocktail
+      cocktail = cocktail.first
+      ingredients = find_ingredients(cocktail)
+      ingredients.map! do |ingredient|
+        Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
       end
+      Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
+    else
+      raise ActiveRecord::RecordNotFound.new(id)
     end
-    ingredients.map! do |ingredient|
-      Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
-    end
-    Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
   end
+end
+
+def find_ingredients(cocktail)
+  ingredients = []
+  15.times do |i|
+    if cocktail["strIngredient#{i+1}".to_sym]
+      name = cocktail["strIngredient#{i+1}".to_sym]
+      measurement = cocktail["strMeasure#{i+1}".to_sym]
+      ingredients << { name: name, measurement: measurement }
+    end
+  end
+  ingredients
 end
