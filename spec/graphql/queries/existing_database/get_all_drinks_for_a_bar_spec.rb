@@ -26,8 +26,7 @@ RSpec.describe Types::DrinkType, type: :request do
                 drinkCount
               }
               ingredients {
-                name
-                quantity
+                description
                 createdAt
                 updatedAt
               }
@@ -45,16 +44,13 @@ RSpec.describe Types::DrinkType, type: :request do
           "updatedAt" => "#{@drinks[0].updated_at.iso8601}",
           "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=> @bar.drink_count},
           "ingredients" =>
-        [{"name" => "#{@ingredients1[0].name}",
-          "quantity" => "#{@ingredients1[0].quantity}",
+        [{"description" => "#{@ingredients1[0].description}",
           "createdAt" => "#{@ingredients1[0].created_at.iso8601}",
           "updatedAt" => "#{@ingredients1[0].updated_at.iso8601}"},
-         {"name" => "#{@ingredients1[1].name}",
-          "quantity" => "#{@ingredients1[1].quantity}",
+         {"description" => "#{@ingredients1[1].description}",
           "createdAt" => "#{@ingredients1[1].created_at.iso8601}",
           "updatedAt" => "#{@ingredients1[1].updated_at.iso8601}"},
-         {"name" => "#{@ingredients1[2].name}",
-          "quantity" => "#{@ingredients1[2].quantity}",
+         {"description" => "#{@ingredients1[2].description}",
           "createdAt" => "#{@ingredients1[2].created_at.iso8601}",
           "updatedAt" => "#{@ingredients1[2].updated_at.iso8601}"}]},
          {"id" => "#{@drinks[1].id}",
@@ -65,16 +61,13 @@ RSpec.describe Types::DrinkType, type: :request do
           "updatedAt" => "#{@drinks[1].updated_at.iso8601}",
           "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>@bar.drink_count},
           "ingredients" =>
-         [{"name" => "#{@ingredients2[0].name}",
-           "quantity" => "#{@ingredients2[0].quantity}",
+         [{"description" => "#{@ingredients2[0].description}",
            "createdAt" => "#{@ingredients2[0].created_at.iso8601}",
            "updatedAt" => "#{@ingredients2[0].updated_at.iso8601}"},
-          {"name" => "#{@ingredients2[1].name}",
-           "quantity" => "#{@ingredients2[1].quantity}",
+          {"description" => "#{@ingredients2[1].description}",
            "createdAt" => "#{@ingredients2[1].created_at.iso8601}",
            "updatedAt" => "#{@ingredients2[1].updated_at.iso8601}"},
-          {"name" => "#{@ingredients2[2].name}",
-           "quantity" => "#{@ingredients2[2].quantity}",
+          {"description" => "#{@ingredients2[2].description}",
            "createdAt" => "#{@ingredients2[2].created_at.iso8601}",
            "updatedAt" => "#{@ingredients2[2].updated_at.iso8601}"}]}]}}
 
@@ -104,8 +97,7 @@ RSpec.describe Types::DrinkType, type: :request do
                 drinkCount
               }
               ingredients {
-                name
-                quantity
+                description
                 createdAt
                 updatedAt
               }
@@ -150,14 +142,12 @@ RSpec.describe Types::DrinkType, type: :request do
                 drinkCount
               }
               ingredients {
-                name
-                quantity
+                description
                 createdAt
                 updatedAt
               }
               ingredients {
-                name
-                quantity
+                description
                 createdAt
                 updatedAt
               }
@@ -176,16 +166,13 @@ RSpec.describe Types::DrinkType, type: :request do
           "updatedAt" => "#{@drinks[0].updated_at.iso8601}",
           "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=> @bar.drink_count},
           "ingredients" =>
-        [{"name" => "#{@ingredients1[0].name}",
-          "quantity" => "#{@ingredients1[0].quantity}",
+        [{"description" => "#{@ingredients1[0].description}",
           "createdAt" => "#{@ingredients1[0].created_at.iso8601}",
           "updatedAt" => "#{@ingredients1[0].updated_at.iso8601}"},
-         {"name" => "#{@ingredients1[1].name}",
-          "quantity" => "#{@ingredients1[1].quantity}",
+         {"description" => "#{@ingredients1[1].description}",
           "createdAt" => "#{@ingredients1[1].created_at.iso8601}",
           "updatedAt" => "#{@ingredients1[1].updated_at.iso8601}"},
-         {"name" => "#{@ingredients1[2].name}",
-          "quantity" => "#{@ingredients1[2].quantity}",
+         {"description" => "#{@ingredients1[2].description}",
           "createdAt" => "#{@ingredients1[2].created_at.iso8601}",
           "updatedAt" => "#{@ingredients1[2].updated_at.iso8601}"}]},
          {"id" => "#{@drinks[1].id}",
@@ -196,16 +183,13 @@ RSpec.describe Types::DrinkType, type: :request do
           "updatedAt" => "#{@drinks[1].updated_at.iso8601}",
           "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>@bar.drink_count},
           "ingredients" =>
-         [{"name" => "#{@ingredients2[0].name}",
-           "quantity" => "#{@ingredients2[0].quantity}",
+         [{"description" => "#{@ingredients2[0].description}",
            "createdAt" => "#{@ingredients2[0].created_at.iso8601}",
            "updatedAt" => "#{@ingredients2[0].updated_at.iso8601}"},
-          {"name" => "#{@ingredients2[1].name}",
-           "quantity" => "#{@ingredients2[1].quantity}",
+          {"description" => "#{@ingredients2[1].description}",
            "createdAt" => "#{@ingredients2[1].created_at.iso8601}",
            "updatedAt" => "#{@ingredients2[1].updated_at.iso8601}"},
-          {"name" => "#{@ingredients2[2].name}",
-           "quantity" => "#{@ingredients2[2].quantity}",
+          {"description" => "#{@ingredients2[2].description}",
            "createdAt" => "#{@ingredients2[2].created_at.iso8601}",
            "updatedAt" => "#{@ingredients2[2].updated_at.iso8601}"}]}]}}
 

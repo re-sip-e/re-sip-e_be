@@ -29,8 +29,7 @@ query {
     }
     ingredients {
       id
-      name
-      quantity
+      description
     }
   }
 }
@@ -54,13 +53,11 @@ Example Response:
         "ingredients": [
           {
             "id": "5",
-            "name": "Gin",
-            "quantity": "1 oz"
+            "name": "1 oz Gin"
           },
           {
             "id": "8",
-            "name": "Campari",
-            "quantity": "1 oz"
+            "name": "1 oz Campari"
           },
           **etc...**
         ]
@@ -90,8 +87,7 @@ query {
     }
     ingredients {
       id
-      name
-      quantity
+      description
     }
   }
 }
@@ -110,18 +106,15 @@ Example Response:
       "ingredients": [
         {
           "id": "5",
-          "name": "Gin",
-          "quantity": "1 oz"
+          "description": "1 oz Gin"
         },
         {
           "id": "6",
-          "name": "Campari",
-          "quantity": "1 oz"
+          "description": "1 oz Campari",
         },
         {
           "id": "7",
-          "name": "Sweet Vermouth",
-          "quantity": "1 oz"
+          "description": "1 oz Sweet Vermouth"
         }
       ]
     }
@@ -143,8 +136,7 @@ query {
     imgUrl
     steps
     ingredients {
-      name
-      quantity
+      description
     }
   }
 }
@@ -163,12 +155,10 @@ Example Response:
         "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
         "ingredients": [
             {
-              "name": "Gin",
-              "quantity": "1 oz"
+              "description": "1 oz Gin"
             },
             {
-              "name": "Campari",
-              "quantity": "1 oz"
+              "description": "1 oz Campari"
             },
             **etc...**
         ]
@@ -193,8 +183,7 @@ query {
     steps
     imgUrl
     ingredients {
-      name
-      quantity
+      description
     }
   }
 }
@@ -212,16 +201,13 @@ Example Response:
       "steps": "Stir into glass over ice, garnish and serve.",
       "ingredients": [
         {
-          "name": "Gin",
-          "quantity": "1 oz"
+          "description": "1 oz Gin"
         },
         {
-          "name": "Campari",
-          "quantity": "1 oz"
+          "description": "1 oz Campari"
         },
         {
-          "name": "Sweet Vermouth",
-          "quantity": "1 oz"
+          "description": "1 oz Sweet Vermouth"
         }
       ]
     }
@@ -287,16 +273,13 @@ const newDrink = {
   "barId": 1,
   "ingredients": [
     {
-      "name": "Gin",
-      "quantity": "1 oz"
+      "description": "1 oz Gin"
     },
     {
-      "name": "Campari",
-      "quantity": "1 oz"
+      "description": "1 oz Campari"
     },
     {
-      "name": "Sweet Vermouth",
-      "quantity": "1 oz"
+      "description": "1 oz Sweet Vermouth"
     }
   ]
 };
@@ -324,8 +307,7 @@ mutation($input: DrinkCreateInput!){
       imgUrl
       ingredients{
         id
-        name
-        quantity
+        description
       }
     }
   }
@@ -346,18 +328,15 @@ Example Response:
         "ingredients": [
           {
             "id": "5",
-            "name": "Gin",
-            "quantity": "1 oz"
+            "description": "1 oz Gin"
           },
           {
             "id": "6",
-            "name": "Campari",
-            "quantity": "1 oz"
+            "description": "1 oz Campari"
           },
           {
             "id": "7",
-            "name": "Sweet Vermouth",
-            "quantity": "1 oz"
+            "description": "1 oz Sweet Vermouth"
           }
         ]
       }
@@ -393,24 +372,20 @@ const updatedDrink = {
   "ingredients": [
     {
       "id": "5",
-      "name": "Gin",
-      "quantity": "1 oz",
+      "description": "1 oz Gin"
       "_destroy": true
     },
     {
       "id": "6",
-      "name": "Campari",
-      "quantity": "1.5 oz"
+      "description": "1.5 oz Campari"
     },
     {
       "id": "7",
-      "name": "Sweet Vermouth",
-      "quantity": "1.5 oz"
+      "description": "1.5 oz Sweet Vermouth"
     },
     {
       "id": null,
-      "name": "Prosecco",
-      "quantity": "1.5 oz"
+      "description": "1.5 oz Prosecco"
     }
   ]
 }
@@ -439,8 +414,7 @@ mutation($input: DrinkUpdateInput!){
       imgUrl
       ingredients{
         id
-        name
-        quantity
+        description
       }
     }
   }
@@ -461,18 +435,15 @@ Example Response:
         "ingredients": [
           {
             "id": "6",
-            "name": "Campari",
-            "quantity": "1.5 oz"
+            "description": "1.5 oz Campari"
           },
           {
             "id": "7",
-            "name": "Sweet Vermouth",
-            "quantity": "1.5 oz"
+            "description": "1.5 oz Sweet Vermouth"
           },
           {
             "id": "8",
-            "name": "Prosecco",
-            "quantity": "1.5 oz"
+            "description": "1.5 oz Prosecco"
           }
         ]
       }

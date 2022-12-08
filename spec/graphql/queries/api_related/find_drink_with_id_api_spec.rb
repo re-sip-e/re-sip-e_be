@@ -1,43 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe Types::DrinkType, type: :request do
-  describe 'Find a Drink from Cocktail API' do
-    describe 'happy path' do
-      it 'can find a drink by id from api', :vcr do
-        query_drink = <<~GQL
-          query {
-            apiDrink(id: 11003){
-              id
-              name
-              steps
-              imgUrl
-              ingredients {
-                name
-                quantity
-              }
-            }
-          }
-        GQL
+
+describe 'Find a Drink from Cocktail API' do
+  describe 'happy path' do
+    it 'can find a drink by id from api', :vcr do
+
+      query_drink = <<~GQL
+         query {
+           apiDrink(id: 11003){
+             id
+             name
+             steps
+             imgUrl
+             ingredients {
+               description
+             }
+           }
+         }
+       GQL
+
 
         expected = {
-          'data' => {
-            'apiDrink' => {
-              'id' => '11003',
-              'name' => 'Negroni',
-              'steps' => 'Stir into glass over ice, garnish and serve.',
-              'imgUrl' => 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg',
-              'ingredients' => [
+          "data"=> {
+            "apiDrink"=> {
+              "id"=> "11003",
+              "name"=> "Negroni",
+              "steps"=> "Stir into glass over ice, garnish and serve.",
+              "imgUrl"=> "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+              "ingredients"=> [
                 {
-                  'name' => 'Gin',
-                  'quantity' => '1 oz '
+                  "description"=> "1 oz  Gin"
                 },
                 {
-                  'name' => 'Campari',
-                  'quantity' => '1 oz '
+                  "description"=> "1 oz  Campari"
                 },
                 {
-                  'name' => 'Sweet Vermouth',
-                  'quantity' => '1 oz '
+                  "description"=> "1 oz  Sweet Vermouth"
                 }
               ]
             }
@@ -61,13 +60,12 @@ RSpec.describe Types::DrinkType, type: :request do
               steps
               imgUrl
               ingredients {
-                name
-                quantity
+                description
               }
             }
           }
         GQL
-        
+
         post '/graphql', params: { query: query_invalid_drink }
         result = JSON.parse(response.body, symbolize_names: true)
         expect(response).to be_successful
@@ -89,15 +87,13 @@ RSpec.describe Types::DrinkType, type: :request do
               imgUrl
               imgUrl
               ingredients {
-                name
-                name
-                quantity
-                quantity
+                description
+                description
               }
             }
           }
         GQL
-        
+
         expected = {
           'data' => {
             'apiDrink' => {
@@ -107,16 +103,13 @@ RSpec.describe Types::DrinkType, type: :request do
               'imgUrl' => 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg',
               'ingredients' => [
                 {
-                  'name' => 'Gin',
-                  'quantity' => '1 oz '
+                  'description' => '1 oz  Gin'
                 },
                 {
-                  'name' => 'Campari',
-                  'quantity' => '1 oz '
+                  'description' => '1 oz  Campari'
                 },
                 {
-                  'name' => 'Sweet Vermouth',
-                  'quantity' => '1 oz '
+                  'description' => '1 oz  Sweet Vermouth'
                 }
               ]
             }

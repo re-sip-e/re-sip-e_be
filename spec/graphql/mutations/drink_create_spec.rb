@@ -8,22 +8,19 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
 
       drink_json = <<~JSON
         {
-          "name": "Negroni",
-          "steps": "Stir into glass over ice, garnish and serve.",
-          "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
-          "barId": #{bar.id},
+          "name":"Negroni",
+          "steps":"Stir into glass over ice, garnish and serve.",
+          "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+          "barId":#{bar.id},
           "ingredients": [
             {
-              "name": "Gin",
-              "quantity": "1 oz"
+              "description":"1 oz Gin"
             },
             {
-              "name": "Campari",
-              "quantity": "1 oz"
+              "description":"1 oz Campari"
             },
             {
-              "name": "Sweet Vermouth",
-              "quantity": "1 oz"
+              "description":"1 oz Sweet Vermouth"
             }
           ]
         }
@@ -32,7 +29,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
       gql_vars = <<~JSON
         {
           "input":{
-            "drinkInput": #{drink_json}
+            "drinkInput":#{drink_json}
           }
         }
       JSON
@@ -49,8 +46,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
               updatedAt
               ingredients{
                 id
-                name
-                quantity
+                description
               }
             }
           }
@@ -71,14 +67,11 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
       expect(created_drink.steps).to eq("Stir into glass over ice, garnish and serve.")
       expect(created_drink.name).to eq("Negroni")
 
-      expect(created_drink.ingredients[0].name).to eq("Gin")
-      expect(created_drink.ingredients[0].quantity).to eq("1 oz")
+      expect(created_drink.ingredients[0].description).to eq("1 oz Gin")
 
-      expect(created_drink.ingredients[1].name).to eq("Campari")
-      expect(created_drink.ingredients[1].quantity).to eq("1 oz")
+      expect(created_drink.ingredients[1].description).to eq("1 oz Campari")
 
-      expect(created_drink.ingredients[2].name).to eq("Sweet Vermouth")
-      expect(created_drink.ingredients[2].quantity).to eq("1 oz")
+      expect(created_drink.ingredients[2].description).to eq("1 oz Sweet Vermouth")
 
       expected_result = {
         data: {
@@ -93,18 +86,15 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
               ingredients: [
                 {
                   id: created_drink.ingredients[0].id.to_s,
-                  name: created_drink.ingredients[0].name,
-                  quantity: created_drink.ingredients[0].quantity
+                  description: created_drink.ingredients[0].description
                 },
                 {
                   id: created_drink.ingredients[1].id.to_s,
-                  name: created_drink.ingredients[1].name,
-                  quantity: created_drink.ingredients[1].quantity
+                  description: created_drink.ingredients[1].description
                 },
                 {
                   id: created_drink.ingredients[2].id.to_s,
-                  name: created_drink.ingredients[2].name,
-                  quantity: created_drink.ingredients[2].quantity
+                  description: created_drink.ingredients[2].description
                 }
               ]
             }

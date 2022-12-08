@@ -4,7 +4,7 @@ class CocktailFacade
     cocktails.map do |cocktail|
       ingredients = find_ingredients(cocktail)
       ingredients.map! do |ingredient|
-        Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
+        Ingredient.new(description: ingredient[:measurement] + " " + ingredient[:name])
       end
       Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
     end
@@ -16,7 +16,8 @@ class CocktailFacade
         cocktail = cocktail[:drinks][0]
         ingredients = find_ingredients(cocktail)
         ingredients.map! do |ingredient|
-          Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
+    # require "pry"; binding.pry
+          Ingredient.new(description: ingredient[:measurement] + " " + ingredient[:name])
         end
         Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
       end
@@ -28,7 +29,7 @@ class CocktailFacade
       cocktail = cocktail.first
       ingredients = find_ingredients(cocktail)
       ingredients.map! do |ingredient|
-        Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
+        Ingredient.new(description: ingredient[:measurement] + " " + ingredient[:name])
       end
       Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
     else

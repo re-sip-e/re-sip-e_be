@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Mutations::DrinkUpdate, type: :request do
-  
+
   describe 'happy path' do
     it 'updates a drink' do
       drink = create(:drink)
@@ -15,25 +15,21 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
           "ingredients": [
             {
               "id": "#{ingredients[0].id}",
-              "name": "#{ingredients[0].name}",
-              "quantity": "#{ingredients[0].quantity}",
+              "description": "#{ingredients[0].description}",
               "_destroy": true
             },
             {
               "id": "#{ingredients[1].id}",
-              "name": "#{ingredients[1].name}",
-              "quantity": "#{ingredients[1].quantity}",
+              "description": "#{ingredients[1].description}",
               "_destroy": true
             },
             {
               "id": "#{ingredients[2].id}",
-              "name": "#{ingredients[2].name}",
-              "quantity": "Modified Quantity"
+              "description": "#{ingredients[2].description}"
             },
             {
               "id": null,
-              "name": "New Ingredient",
-              "quantity": "New Ingredient Quantity"
+              "description": "New Description"
             }
           ]
         }
@@ -58,20 +54,18 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
               imgUrl
               ingredients{
                 id
-                name
-                quantity
+                description
               }
             }
           }
         }
       GQL
 
-      
+
       post '/graphql', params: {query: mutation, variables: gql_vars}
       result = JSON.parse(response.body, symbolize_names: true)
-      
-      updated_drink = Drink.find(drink.id)
 
+      updated_drink = Drink.find(drink.id)
       expected = {
         data: {
           drinkUpdate: {
@@ -83,13 +77,11 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
               ingredients: [
                 {
                   id: ingredients[2].id.to_s,
-                  name: ingredients[2].name,
-                  quantity: "Modified Quantity"
+                  description: ingredients[2].description
                 },
                 {
                   id: updated_drink.ingredients.last.id.to_s,
-                  name: "New Ingredient",
-                  quantity: "New Ingredient Quantity"
+                  description: "New Description"
                 }
               ]
             }
@@ -110,11 +102,9 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
       expect(updated_drink.ingredients.length).to eq(2)
 
       expect(updated_drink.ingredients[0].id).to eq(ingredients[2].id)
-      expect(updated_drink.ingredients[0].name).to eq(ingredients[2].name)
-      expect(updated_drink.ingredients[0].quantity).to eq("Modified Quantity")
+      expect(updated_drink.ingredients[0].description).to eq(ingredients[2].description)
 
-      expect(updated_drink.ingredients[1].name).to eq("New Ingredient")
-      expect(updated_drink.ingredients[1].quantity).to eq("New Ingredient Quantity")
+      expect(updated_drink.ingredients[1].description).to eq("New Description")
     end
   end
 end
