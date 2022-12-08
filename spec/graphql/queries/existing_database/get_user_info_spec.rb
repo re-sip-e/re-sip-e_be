@@ -149,4 +149,90 @@ RSpec.describe Types::UserType, type: :request do
       expect(result).to eq(expected)
     end
   end
+
+  describe 'edge case' do
+    it 'will not return an error when querying for info about a user using the users id using duplicate fields' do
+      def query_dup_field_user
+        <<~GQL
+          query {
+            user(id: "#{@user.id}") {
+              id
+              id
+              name
+              name
+              barCount
+              barCount
+              createdAt
+              createdAt
+            }
+          }
+        GQL
+      end
+
+      expected = { "data": {
+        "user": {
+          "id": "#{@user.id}",
+          "name": "#{@user.name}",
+          "barCount": @user.bar_count,
+          "createdAt": "#{@user.created_at.iso8601}"
+        }
+      } }
+
+      post '/graphql', params: { query: query_dup_field_user }
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
+    end
+
+    it 'will not return an error when using duplicate fields while querying for bars associated with a user' do
+      def query_dup_field_user_bars
+        <<~GQL
+          query {
+            user(id: "#{@user.id}") {
+              id
+              id
+              name
+              name
+              barCount
+              barCount
+              createdAt
+              createdAt
+              bars {
+              id
+              id
+              name
+              name
+              drinkCount
+              drinkCount
+              }
+            }
+          }
+        GQL
+      end
+
+      expected = { "data": {
+        "user": {
+          "id": "#{@user.id}",
+          "name": "#{@user.name}",
+          "barCount": @user.bar_count,
+          "createdAt": "#{@user.created_at.iso8601}",
+          "bars": [
+            { "id": "#{@bar_1.id}",
+              "name": "#{@bar_1.name}",
+              "drinkCount": @bar_1.drink_count },
+            { "id": "#{@bar_2.id}",
+              "name": "#{@bar_2.name}",
+              "drinkCount": @bar_2.drink_count }
+          ]
+        }
+      } }
+
+      post '/graphql', params: { query: query_dup_field_user_bars }
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(result).to eq(expected)
+      expect(result[:data][:name]).to_not eq(@bar_1.name)
+    end
+  end
 end
