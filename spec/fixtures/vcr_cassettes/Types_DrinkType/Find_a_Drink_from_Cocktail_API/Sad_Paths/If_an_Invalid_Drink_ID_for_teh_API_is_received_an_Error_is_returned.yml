@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 08 Dec 2022 00:37:21 GMT
+      - Thu, 08 Dec 2022 01:19:50 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -33,17 +33,17 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=WfL9ngkm7XT55PtyhwYdOiG0DU7JSJFKvvrgJUsukz7sL893aK3UPHRCVl76n4IPZN3%2Fm1Y7IkE6ERcpJnH9UrrGMUQl9daLv13zq%2FbwrNxNX8RlTQki6Pa1ygkXoLp%2FM1QFW4rne%2FA%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=naJscZt6XV69T2N7aJVgRh2IVWnc%2Bf2GPZY6APY0EY20dnh9XW%2F%2BJUOhTwg0EWGuxW1cCZ818ttvazGL1mp1ezvvp56MsjcH%2B%2B8JaskOxenW1k2slao7F%2BR6KtMqahNqefyL%2BEOBx6s%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 77616e992ecfaa3f-DFW
+      - 7761acd2aa350bfb-DFW
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: UTF-8
       string: '{"drinks":null}'
-  recorded_at: Thu, 08 Dec 2022 00:37:21 GMT
+  recorded_at: Thu, 08 Dec 2022 01:19:50 GMT
 recorded_with: VCR 6.1.0
