@@ -89,7 +89,6 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
         }
       }
 
-  # require "pry"; binding.pry
       expect(response).to be_successful
       expect(result).to eq(expected)
 

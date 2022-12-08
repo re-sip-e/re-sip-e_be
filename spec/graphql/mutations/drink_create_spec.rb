@@ -59,7 +59,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
 
       result = JSON.parse(response.body, symbolize_names: true)
       created_drink = Drink.last
-# require "pry"; binding.pry
+
       expect(created_drink.bar).to eq(bar)
 
       expect(created_drink.name).to eq("Negroni")
