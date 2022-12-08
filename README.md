@@ -482,6 +482,36 @@ Example Response:
 ```
 
 ---
+### Delete a Drink
+
+Example Query
+
+```
+mutation {
+  deleteDrink(input: {
+    id: 1
+  }
+  ){
+    success
+    errors
+  }
+}
+```
+
+Example Response:
+
+```JSON
+{
+  "data": {
+    "deleteDrink": {
+      "errors":[],
+      "success":true
+    }
+  }
+}
+```
+
+
 
 ### Get Bar Info
 
