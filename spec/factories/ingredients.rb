@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :ingredient do
-    name { Faker::Dessert.topping }
+    description { Faker::Dessert.topping } #+ Faker::Food.measurement
     drink
-    quantity { Faker::Food.measurement }
   end
 end

@@ -14,8 +14,7 @@ RSpec.describe Types::DrinkType, type: :request do
             steps
             imgUrl
             ingredients {
-              name
-              quantity
+              description
             }
           }
         }
@@ -31,16 +30,13 @@ RSpec.describe Types::DrinkType, type: :request do
             "imgUrl"=> "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
             "ingredients"=> [
               {
-                "name"=> "Gin",
-                "quantity"=> "1 oz ",
+                "description"=> "1 oz  Gin"
               },
               {
-                "name"=> "Campari",
-                "quantity"=> "1 oz "
+                "description"=> "1 oz  Campari"
               },
               {
-                "name"=> "Sweet Vermouth",
-                "quantity"=> "1 oz "
+                "description"=> "1 oz  Sweet Vermouth"
               }
             ]
           }

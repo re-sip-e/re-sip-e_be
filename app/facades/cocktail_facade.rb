@@ -11,7 +11,7 @@ class CocktailFacade
         end
       end
       ingredients.map! do |ingredient|
-        Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
+        Ingredient.new(description: ingredient[:measurement] + " " + ingredient[:name])
       end
       Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
     end
@@ -29,7 +29,8 @@ class CocktailFacade
           end
         end
         ingredients.map! do |ingredient|
-          Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
+    # require "pry"; binding.pry
+          Ingredient.new(description: ingredient[:measurement] + " " + ingredient[:name])
         end
         Drink.new(id: cocktail[:drinks][0][:idDrink], name: cocktail[:drinks][0][:strDrink], img_url: cocktail[:drinks][0][:strDrinkThumb], steps: cocktail[:drinks][0][:strInstructions], ingredients: ingredients)
       end
@@ -46,7 +47,7 @@ class CocktailFacade
       end
     end
     ingredients.map! do |ingredient|
-      Ingredient.new(name: ingredient[:name], quantity: ingredient[:measurement])
+      Ingredient.new(description: ingredient[:measurement] + " " + ingredient[:name])
     end
     Drink.new(id: cocktail[:idDrink], name: cocktail[:strDrink], img_url: cocktail[:strDrinkThumb], steps: cocktail[:strInstructions], ingredients: ingredients)
   end

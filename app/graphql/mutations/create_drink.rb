@@ -9,11 +9,10 @@ class Mutations::CreateDrink < Mutations::BaseMutation
   field :errors, [String]
 
   def resolve(ingredients:, name:nil, steps:, img_url:, bar_id:)
-
     ingredients.map! do |ingredient|
       Ingredient.new(ingredient.to_h)
     end
-    
+
     new_drink = Drink.new(
       bar_id: bar_id,
       name: name,
@@ -21,7 +20,7 @@ class Mutations::CreateDrink < Mutations::BaseMutation
       ingredients: ingredients,
       img_url: img_url
     )
-    
+
     if new_drink.save
       {
         drink: new_drink,
