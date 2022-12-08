@@ -118,4 +118,37 @@ RSpec.describe Types::BarType, type: :request do
     end
   end
 
+  describe 'edge case' do
+    it 'does not receive error when a field is requested errently twice for a bar' do
+      def query_dup_field_bar
+        <<~GQL
+        query {
+          bar(id: "#{@bar_1.id}") {
+            id
+            id
+            name
+            name
+            drinkCount
+            drinkCount
+          }
+        }
+        GQL
+      end
+
+      expected = { "data": {
+        "bar": {
+          "id": "#{@bar_1.id}",
+          "name": "#{@bar_1.name}",
+          "drinkCount": @bar_1.drink_count}
+        }
+      }
+
+      post '/graphql', params: {query: query_dup_field_bar}
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
+      expect(result[:data][:name]).to_not eq(@bar_2.name)
+    end
+  end
+
 end
