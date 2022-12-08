@@ -101,14 +101,14 @@ RSpec.describe Types::DrinkType, type: :request do
       end
 
       post '/graphql', params: {query: query_bad_id_drink}
-      result = JSON.parse(response.body, symbolize_names: true)
+      result = JSON.parse(response.body)
 
-      expect(result[:errors][0][:message]).to eq("Drink not found")
+      expect(result["errors"][0]["message"]).to eq("Couldn't find Drink with 'id'=300")
     end
   end
 
   describe 'edge case' do
-    it 'does not receive and error when a field is requested errently twice' do
+    it 'does not receive error when a field is requested errently twice' do
       def query_double_fields_drink
         <<~GQL
           query {
