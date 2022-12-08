@@ -23,8 +23,6 @@ query {
     name
     imgUrl
     steps
-    createdAt
-    updatedAt
     bar {
       id
       name
@@ -33,8 +31,6 @@ query {
       id
       name
       quantity
-      createdAt
-      updatedAt
     }
   }
 }
@@ -51,22 +47,20 @@ Example Response:
         "name": "Negroni",
         "steps": "Stir into glass over ice, garnish and serve.",
         "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
-        "createdAt": "2022-12-02T01:46:06Z",
-        "updatedAt": "2022-12-02T01:46:06Z",
+        "bar": {
+          "id": "1",
+          "name": "Joe's Bar"
+        }
         "ingredients": [
           {
             "id": "5",
             "name": "Gin",
-            "quantity": "1 oz",
-            "createdAt": "2022-12-02T01:46:06Z",
-            "updatedAt": "2022-12-02T01:46:06Z",
+            "quantity": "1 oz"
           },
           {
             "id": "8",
             "name": "Campari",
-            "quantity": "1 oz",
-            "createdAt": "2022-12-02T01:46:06Z",
-            "updatedAt": "2022-12-02T01:46:06Z",
+            "quantity": "1 oz"
           },
           **etc...**
         ]
@@ -90,17 +84,14 @@ query {
     name
     imgUrl
     steps
-    createdAt
-    updatedAt
     bar {
       id
       name
     }
     ingredients {
+      id
       name
       quantity
-      createdAt
-      updatedAt
     }
   }
 }
@@ -116,26 +107,21 @@ Example Response:
       "imgUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
       "steps": "Stir into glass over ice, garnish and serve.",
       "name": "Negroni",
-      "createdAt": "2022-12-02T03:21:12Z",
-      "updatedAt": "2022-12-02T03:21:12Z",
       "ingredients": [
         {
+          "id": "5",
           "name": "Gin",
-          "quantity": "1 oz",
-          "createdAt": "2022-12-02T03:22:28Z",
-          "updatedAt": "2022-12-02T03:22:28Z"
+          "quantity": "1 oz"
         },
         {
+          "id": "6",
           "name": "Campari",
-          "quantity": "1 oz",
-          "createdAt": "2022-12-02T03:22:44Z",
-          "updatedAt": "2022-12-02T03:22:44Z"
+          "quantity": "1 oz"
         },
         {
+          "id": "7",
           "name": "Sweet Vermouth",
-          "quantity": "1 oz",
-          "createdAt": "2022-12-02T03:22:57Z",
-          "updatedAt": "2022-12-02T03:22:57Z"
+          "quantity": "1 oz"
         }
       ]
     }
