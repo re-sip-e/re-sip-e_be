@@ -1,57 +1,66 @@
 require 'rails_helper'
 
-RSpec.describe 'adding a drink to a bar', type: :request do
+RSpec.describe Mutations::DrinkCreate, type: :request do
   describe 'happy path' do
     it 'can add a drink with ingredients to a bar' do
 
-      @bar = create(:bar)
+      bar = create(:bar)
 
-      def create_drink_mutation
-        <<~GQL
-          mutation {
-            createDrink(input:{
-              name:"Negroni"
-              imgUrl:"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"
-              steps:"Stir into glass over ice, garnish and serve."
-              barId: "#{@bar.id}"
-              ingredients:[
-                {
-                  description:"1 oz Gin"
-                }
-                {
-                  description:"1 oz Campari"
-                }
-                {
-                  description:"1 oz Sweet Vermouth"
-                }
-              ]
-            }){
-              drink{
+      drink_json = <<~JSON
+        {
+          "name":"Negroni",
+          "steps":"Stir into glass over ice, garnish and serve.",
+          "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+          "barId":#{bar.id},
+          "ingredients": [
+            {
+              "description":"1 oz Gin"
+            },
+            {
+              "description":"1 oz Campari"
+            },
+            {
+              "description":"1 oz Sweet Vermouth"
+            }
+          ]
+        }
+      JSON
+
+      gql_vars = <<~JSON
+        {
+          "input":{
+            "drinkInput":#{drink_json}
+          }
+        }
+      JSON
+
+      mutation = <<~GQL
+        mutation($input: DrinkCreateInput!){
+          drinkCreate(input: $input){
+            drink{
+              id
+              name
+              steps
+              imgUrl
+              createdAt
+              updatedAt
+              ingredients{
                 id
-                name
-                steps
-                imgUrl
-                createdAt
-                updatedAt
-                ingredients{
-                  description
-                  id
-                }
+                description
               }
-              errors
             }
           }
-        GQL
-      end
+        }
+      GQL
 
-      post '/graphql', params: {query: create_drink_mutation}
+      post '/graphql', params: {query: mutation, variables: gql_vars}
 
       expect(response).to be_successful
 
       result = JSON.parse(response.body, symbolize_names: true)
       created_drink = Drink.last
 # require "pry"; binding.pry
-      expect(created_drink.bar).to eq(@bar)
+      expect(created_drink.bar).to eq(bar)
 
       expect(created_drink.name).to eq("Negroni")
       expect(created_drink.img_url).to eq("https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg")
@@ -66,7 +75,7 @@ RSpec.describe 'adding a drink to a bar', type: :request do
 
       expected_result = {
         data: {
-          createDrink: {
+          drinkCreate: {
             drink: {
               id: created_drink.id.to_s,
               name: created_drink.name,
@@ -88,8 +97,7 @@ RSpec.describe 'adding a drink to a bar', type: :request do
                   description: created_drink.ingredients[2].description
                 }
               ]
-            },
-            errors: []
+            }
           }
         }
       }

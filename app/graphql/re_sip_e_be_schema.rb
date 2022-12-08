@@ -37,4 +37,9 @@ class ReSipEBeSchema < GraphQL::Schema
     # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
     GlobalID.find(global_id)
   end
+
+  rescue_from(ActiveRecord::RecordNotFound) do |err, obj, args, ctx, field|
+    raise GraphQL::ExecutionError, "#{err.to_param}"
+  end
+
 end
