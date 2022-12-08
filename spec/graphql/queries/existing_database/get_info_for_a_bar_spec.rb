@@ -116,10 +116,38 @@ RSpec.describe Types::BarType, type: :request do
 
       expect(result).to eq(expected)
     end
+
+    it 'returns and error when querying for drinks with a bar id that doesnt exist' do
+      def query_bad_id_bar_drinks
+        <<~GQL
+        query {
+          bar(id: 100) {
+            id
+            name
+            drinkCount
+            drinks{
+              name
+            }
+          }
+        }
+        GQL
+      end
+
+      expected = {:data=>nil,
+      :errors=>
+       [{:message=>"Couldn't find Bar with 'id'=100",
+         :locations=>[{:line=>2, :column=>3}],
+         :path=>["bar"]}]}
+
+      post '/graphql', params: {query: query_bad_id_bar_drinks}
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
+    end
   end
 
   describe 'edge case' do
-    it 'does not receive error when a field is requested errently twice for a bar' do
+    it 'does not receive an error when a field is requested errently twice for a bar' do
       def query_dup_field_bar
         <<~GQL
         query {
@@ -148,6 +176,46 @@ RSpec.describe Types::BarType, type: :request do
 
       expect(result).to eq(expected)
       expect(result[:data][:name]).to_not eq(@bar_2.name)
+    end
+
+    it 'does not receive an error when duplicate fields are used in the request for a bars drinks' do
+      def query_dup_fields_bar_drinks
+        <<~GQL
+        query {
+          bar(id: "#{@bar_2.id}") {
+            id
+            id
+            name
+            name
+            drinkCount
+            drinkCount
+            drinks{
+            name
+              name
+            }
+          }
+        }
+        GQL
+      end
+
+      expected = { "data": {
+        "bar": {
+          "id": "#{@bar_2.id}",
+          "name": "#{@bar_2.name}",
+          "drinkCount": @bar_2.drink_count,
+          "drinks": [
+            {"name": "#{@drink_3.name}"},
+            {"name": "#{@drink_4.name}"},
+            {"name": "#{@drink_5.name}"}
+          ]}
+        }
+      }
+
+
+      post '/graphql', params: {query: query_dup_fields_bar_drinks}
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(result).to eq(expected)
     end
   end
 
