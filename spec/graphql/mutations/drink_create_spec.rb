@@ -111,7 +111,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
 
       bar = create(:bar)
 
-      drink_json = <<~JSON
+      drink_dup_fields_json = <<~JSON
         {
           "name":"Negroni",
           "name":"Negroni",
@@ -141,12 +141,12 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
       gql_vars = <<~JSON
         {
           "input":{
-            "drinkInput":#{drink_json}
+            "drinkInput":#{drink_dup_fields_json}
           }
         }
       JSON
 
-      mutation = <<~GQL
+      mutation_dup_fields = <<~GQL
         mutation($input: DrinkCreateInput!){
           drinkCreate(input: $input){
             drink{
@@ -173,7 +173,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
         }
       GQL
 
-      post '/graphql', params: {query: mutation, variables: gql_vars}
+      post '/graphql', params: {query: mutation_dup_fields, variables: gql_vars}
       expect(response).to be_successful
 
       result = JSON.parse(response.body, symbolize_names: true)
@@ -222,7 +222,6 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
       }
 
       expect(result).to eq(expected_result)
-      require 'pry' ; binding.pry
     end
   end
 end
