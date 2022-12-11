@@ -11,8 +11,7 @@ RSpec.describe Types::DrinkType, type: :request do
       drink_2 = Drink.new(id: "13026", name: "Sangria The  Best", img_url: "https://www.thecocktaildb.com/images/media/drink/vysywu1468924264.jpg")
       drink_3 = Drink.new(id: "12724", name: "Sweet Bananas", img_url: "https://www.thecocktaildb.com/images/media/drink/sxpcj71487603345.jpg")
 
-      def get_random
-        <<~GQL
+      get_random = <<~GQL
         query {
           threeRandomApiDrinks {
             id
@@ -21,7 +20,6 @@ RSpec.describe Types::DrinkType, type: :request do
           }
         }
         GQL
-      end
 
       drinks = [drink_1, drink_2, drink_3]
 
@@ -43,6 +41,46 @@ RSpec.describe Types::DrinkType, type: :request do
       results = JSON.parse(response.body)
 
       expect(results).to eq(expected)
+    end
+
+    describe "Edge Case" do
+      it 'If Cocktail DB API is not responsive an Error is returned in GraphQL' do     
+        stub_request(:get, "https://www.thecocktaildb.com/api/json/v1/1/random.php").to_return(status: 500)
+
+        get_random_api_down = <<~GQL
+        query {
+          threeRandomApiDrinks {
+            id
+            name
+            imgUrl
+          }
+        }
+        GQL
+
+        post '/graphql', params: { query: get_random_api_down }
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to be_successful
+        expect(result[:errors][0][:message]).to eq("the server responded with status 500")
+      end
+
+      it 'If an Invalid request is sent to the Cocktail DB API a server Error is returned in GraphQL' do     
+        stub_request(:get, "https://www.thecocktaildb.com/api/json/v1/1/random.php").to_return(status: 400)
+
+        get_random_api_down = <<~GQL
+        query {
+          threeRandomApiDrinks {
+            id
+            name
+            imgUrl
+          }
+        }
+        GQL
+
+        post '/graphql', params: { query: get_random_api_down }
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(response).to be_successful
+        expect(result[:errors][0][:message]).to eq("the server responded with status 400")
+      end
     end
   end
 end

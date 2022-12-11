@@ -169,6 +169,27 @@ Example Response:
 }
 ```
 
+Example of Response if Cocktail DB is Provides 4xx or 5xx response error:
+
+```JSON
+{
+  "data":{
+    "apiDrinks": null},
+    "errors": [
+      {
+        "message": "the server responded with status 5xx",
+        "locations": [
+          {
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "path": [ "apiDrinks" ]
+      }
+    ]
+  }
+```
+
 ---
 
 ### Get Single API Drink
@@ -215,6 +236,27 @@ Example Response:
 }
 ```
 
+Example of Response if Cocktail DB is Provides 4xx or 5xx response error:
+
+```JSON
+{
+  "data":{
+    "apiDrink": null},
+    "errors": [
+      {
+        "message": "the server responded with status 5xx",
+        "locations": [
+          {
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "path": [ "apiDrink" ]
+      }
+    ]
+  }
+```
+
 ---
 
 ### Get Three Random API Drink
@@ -255,6 +297,27 @@ Example Response:
     ]
   }
 }
+```
+
+Example of Response if Cocktail DB is Provides 4xx or 5xx response error:
+
+```JSON
+{
+  "data":{
+    "threeRandomApiDrinks": null},
+    "errors": [
+      {
+        "message": "the server responded with status 5xx",
+        "locations": [
+          {
+            "line": 2,
+            "column": 3
+          }
+        ],
+        "path": [ "threeRandomApiDrinks" ]
+      }
+    ]
+  }
 ```
 
 ---
