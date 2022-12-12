@@ -311,7 +311,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
         expect(response).to be_successful
         
         result = JSON.parse(response.body, symbolize_names: true)
-        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{ :ingredients=>["must have at least one ingredient"]}}]}
+        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{ :ingredients=>["can't be blank"]}}]}
 
         expect(result).to eq(expected)
       end
