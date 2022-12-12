@@ -85,29 +85,32 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
       expect(Drink.all.count).to eq(5)
     end
 
-    it 'deletes all drink ingredients when deleting a drink ' do
-      drink1 = create(:drink)
-      ingredients = create_list(:ingredient, 4, drink: drink1)
+    it 'It does not delete any drinks if an invalid drink id is provided and a no drink found error is provided' do
+      drinks = create_list(:drink, 5)
 
-      query_fail_delete_drink = <<~GQL
+      query_invalid_delete_drink = <<~GQL
         mutation{
           deleteDrink(input: {
-             id: "#{drink1.id}"
+             id: "#{drinks[4].id + 1} "
            }
         ){
           success
           errors}}
       GQL
 
-      expected = { data: { deleteDrink: { errors: [], success: false} } }
+      expected = { data: { deleteDrink: nil },
+                   errors: [
+                     { locations: [{ column: 3, line: 2 }],
+                       message: "Couldn't find Drink with 'id'=#{drinks[4].id + 1} ",
+                       path: ['deleteDrink'] }
+                   ] }
 
-      post '/graphql', params: { query: query_fail_delete_drink }
+      post '/graphql', params: { query: query_invalid_delete_drink }
       result = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
       expect(result).to eq(expected)
-      expect(Ingredient.all).to eq(ingredients)
-      expect { Drink.find(drink1.id) }.to eq(drink1)
+      expect(Drink.all.count).to eq(5)
     end
   end
 end
