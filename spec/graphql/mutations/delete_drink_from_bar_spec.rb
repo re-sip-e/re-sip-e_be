@@ -4,7 +4,6 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
   describe 'happy path' do
     it 'can delete a drink provided drink id' do
       drink1 = create(:drink)
-      ingredients = create_list(:ingredient, 3, drink: drink1)
 
       query_delete_drink = <<~GQL
         mutation{
@@ -29,7 +28,7 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
 
     it 'deletes all drink ingredients when deleting a drink ' do
       drink1 = create(:drink)
-      ingredients = create_list(:ingredient, 3, drink: drink1)
+      ingredients = drink1.ingredients
 
       query_delete_drink = <<~GQL
         mutation{
