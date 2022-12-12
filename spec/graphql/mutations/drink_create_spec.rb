@@ -286,6 +286,35 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
 
         expect(result).to eq(expected)
       end
+
+
+      it 'cannot create a drink without ingredients' do
+        drink_json = <<~JSON
+          {
+            "name":"Water",
+            "steps":"Stir into glass over ice, garnish and serve.",
+            "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+            "barId":#{bar.id},
+            "ingredients": []
+          }
+        JSON
+
+        gql_vars = <<~JSON
+          {
+            "input":{
+              "drinkInput":#{drink_json}
+            }
+          }
+        JSON
+
+        post '/graphql', params: {query: mutation, variables: gql_vars}
+        expect(response).to be_successful
+        
+        result = JSON.parse(response.body, symbolize_names: true)
+        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{ :ingredients=>["must have at least one ingredient"]}}]}
+
+        expect(result).to eq(expected)
+      end
     end
   end
 end
