@@ -42,4 +42,12 @@ class ReSipEBeSchema < GraphQL::Schema
     raise GraphQL::ExecutionError, "#{err.to_param}"
   end
 
+  rescue_from(Faraday::ServerError)  do |err, obj, args, ctx, field|
+    raise GraphQL::ExecutionError, "#{err.to_param}"
+  end
+
+  rescue_from(Faraday::ClientError)  do |err, obj, args, ctx, field|
+    raise GraphQL::ExecutionError, "#{err.to_param}"
+  end
+
 end

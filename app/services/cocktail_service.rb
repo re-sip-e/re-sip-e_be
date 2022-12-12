@@ -1,5 +1,4 @@
 class CocktailService
-
   def self.get_search_results(query)
     response = conn.get("/api/json/v1/1/search.php?s=#{query}")
     JSON.parse(response.body, symbolize_names: true)
@@ -9,17 +8,17 @@ class CocktailService
     response = conn.get("/api/json/v1/1/lookup.php?i=#{id}")
     JSON.parse(response.body, symbolize_names: true)
   end
+
   def self.get_three_random
     3.times.collect do
-      response = conn.get("/api/json/v1/1/random.php")
+      response = conn.get('/api/json/v1/1/random.php')
       JSON.parse(response.body, symbolize_names: true)
     end
   end
 
-
-  private
-
   def self.conn
-    Faraday.new(url: 'https://www.thecocktaildb.com')
+    Faraday.new(url: 'https://www.thecocktaildb.com') do |f|
+      f.response :raise_error
+    end
   end
 end
