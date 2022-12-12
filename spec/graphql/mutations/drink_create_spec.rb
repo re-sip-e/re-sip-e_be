@@ -223,5 +223,69 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
 
       expect(result).to eq(expected_result)
     end
+
+    describe 'sad path' do
+      let!(:bar){ create(:bar) }
+
+      let!(:mutation) {
+        <<~GQL
+          mutation($input: DrinkCreateInput!){
+            drinkCreate(input: $input){
+              drink{
+                id
+                name
+                steps
+                imgUrl
+                createdAt
+                updatedAt
+                ingredients{
+                  id
+                  description
+                }
+              }
+            }
+          }
+        GQL
+      }
+
+      it 'cannot create a drink without a name' do
+
+        drink_json = <<~JSON
+          {
+            "name":"",
+            "steps":"Stir into glass over ice, garnish and serve.",
+            "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+            "barId":#{bar.id},
+            "ingredients": [
+              {
+                "description":"1 oz Gin"
+              },
+              {
+                "description":"1 oz Campari"
+              },
+              {
+                "description":"1 oz Sweet Vermouth"
+              }
+            ]
+          }
+        JSON
+
+        gql_vars = <<~JSON
+          {
+            "input":{
+              "drinkInput":#{drink_json}
+            }
+          }
+        JSON
+
+        post '/graphql', params: {query: mutation, variables: gql_vars}
+        expect(response).to be_successful
+        
+        result = JSON.parse(response.body, symbolize_names: true)
+        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{:name=>["can't be blank"]}}]}
+
+        expect(result).to eq(expected)
+      end
+    end
   end
 end
