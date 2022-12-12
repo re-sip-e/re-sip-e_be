@@ -248,12 +248,12 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
         GQL
       }
 
-      it 'cannot create a drink without a name' do
+      it 'cannot create a drink without a name or steps' do
 
         drink_json = <<~JSON
           {
             "name":"",
-            "steps":"Stir into glass over ice, garnish and serve.",
+            "steps":"",
             "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
             "barId":#{bar.id},
             "ingredients": [
@@ -282,7 +282,7 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
         expect(response).to be_successful
         
         result = JSON.parse(response.body, symbolize_names: true)
-        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{:name=>["can't be blank"]}}]}
+        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{:name=>["can't be blank"], :steps=>["can't be blank"]}}]}
 
         expect(result).to eq(expected)
       end
@@ -312,6 +312,81 @@ RSpec.describe Mutations::DrinkCreate, type: :request do
         
         result = JSON.parse(response.body, symbolize_names: true)
         expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{ :ingredients=>["must have at least one ingredient"]}}]}
+
+        expect(result).to eq(expected)
+      end
+
+      it 'cannot create a drink without a valid bar id' do
+        drink_json = <<~JSON
+          {
+            "name":"Negroni",
+            "steps":"Stir into glass over ice, garnish and serve.",
+            "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+            "barId":#{bar.id + 1},
+            "ingredients": [
+              {
+                "description":"1 oz Gin"
+              },
+              {
+                "description":"1 oz Campari"
+              },
+              {
+                "description":"1 oz Sweet Vermouth"
+              }
+            ]
+          }
+        JSON
+
+        gql_vars = <<~JSON
+          {
+            "input":{
+              "drinkInput":#{drink_json}
+            }
+          }
+        JSON
+
+        post '/graphql', params: {query: mutation, variables: gql_vars}
+        expect(response).to be_successful
+        
+        result = JSON.parse(response.body, symbolize_names: true)
+        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{:bar=>["must exist"]}}]}
+
+        expect(result).to eq(expected)
+      end
+
+      it 'cant create a drink without a bar id provided' do
+        drink_json = <<~JSON
+          {
+            "name":"Negroni",
+            "steps":"Stir into glass over ice, garnish and serve.",
+            "imgUrl":"https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+            "ingredients": [
+              {
+                "description":"1 oz Gin"
+              },
+              {
+                "description":"1 oz Campari"
+              },
+              {
+                "description":"1 oz Sweet Vermouth"
+              }
+            ]
+          }
+        JSON
+
+        gql_vars = <<~JSON
+          {
+            "input":{
+              "drinkInput":#{drink_json}
+            }
+          }
+        JSON
+
+        post '/graphql', params: {query: mutation, variables: gql_vars}
+        expect(response).to be_successful
+        
+        result = JSON.parse(response.body, symbolize_names: true)
+        expected = {:data=>{:drinkCreate=>nil}, :errors=>[{:message=>"Error creating drink", :locations=>[{:line=>2, :column=>3}], :path=>["drinkCreate"], :extensions=>{:bar=>["must exist"]}}]}
 
         expect(result).to eq(expected)
       end
