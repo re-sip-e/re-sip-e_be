@@ -34,11 +34,11 @@ module Types
 
     field :api_drink, Types::DrinkType, null: true do
      argument :id, ID, required: true
-   end
+    end
 
-   def api_drink(id:)
-     CocktailFacade.cocktail_by_id(id)
-   end
+    def api_drink(id:)
+      CocktailFacade.cocktail_by_id(id)
+    end
 
     field :three_random_api_drinks, [Types::DrinkType], null: true
 
