@@ -20,15 +20,39 @@ user = User.create!(name: "Joe Schmoe", email: "joe.schmoe@gmail.com", location:
 bar = Bar.create!(name: "Joe's Bar")
 bar.users << user
 
-drink_1 = Drink.create!(name: "Negroni", img_url: "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg", steps: "Stir into glass over ice, garnish and serve.", bar: bar)
+drink_1 = Drink.create!(
+  name: "Negroni",
+  img_url: "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+  steps: "Stir into glass over ice, garnish and serve.",
+  bar: bar,
+  ingredients_attributes: [
+    {
+      description: "1 oz Gin"
+    },
+    {
+      description: "1 oz Campari"
+    },
+    {
+      description: "1 oz Sweet Vermouth"
+    }
+  ]
+)
 
-ingredient_1 = Ingredient.create!(description: "1 oz Gin", drink: drink_1)
-ingredient_2 = Ingredient.create!(description: "1 oz Campari", drink: drink_1)
-ingredient_3 = Ingredient.create!(description: "1 oz Sweet Vermouth", drink: drink_1)
-
-drink_2 = Drink.create!(name: "Aviation", img_url: "https://www.thecocktaildb.com/images/media/drink/trbplb1606855233.jpg", steps: "Add all ingredients into cocktail shaker filled with ice. Shake well and strain into cocktail glass. Garnish with a cherry.", bar: bar)
-
-ingredient_4 = Ingredient.create!(description: "4.5 cl Gin", drink: drink_2)
-ingredient_5 = Ingredient.create!(description: "1.5 cl Lemon Juice", drink: drink_2)
-ingredient_6 = Ingredient.create!(description: "1.5 cl Maraschino Liqueur", drink: drink_2)
+drink_2 = Drink.create!(
+  name: "Aviation",
+  img_url: "https://www.thecocktaildb.com/images/media/drink/trbplb1606855233.jpg",
+  steps: "Add all ingredients into cocktail shaker filled with ice. Shake well and strain into cocktail glass. Garnish with a cherry.",
+  bar: bar,
+  ingredients_attributes: [
+    {
+      description: "4.5 cl Gin"
+    },
+    {
+      description: "1.5 cl Lemon Juice"
+    },
+    {
+      description: "1.5 cl Maraschino Liqueur"
+    }
+  ]
+)
 

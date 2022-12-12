@@ -5,7 +5,7 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
   describe 'happy path' do
     it 'updates a drink' do
       drink = create(:drink)
-      ingredients = create_list(:ingredient, 3, drink: drink)
+      ingredients = drink.ingredients
 
       updated_drink_json = <<~JSON
         {
@@ -111,7 +111,7 @@ RSpec.describe Mutations::DrinkUpdate, type: :request do
   describe 'edge case' do
     it 'successfully updates a drink with duplicate fields in request' do
       drink = create(:drink)
-      ingredients = create_list(:ingredient, 3, drink: drink)
+      ingredients = drink.ingredients
 
       updated_drink_dup_ingredients_json = <<~JSON
         {
