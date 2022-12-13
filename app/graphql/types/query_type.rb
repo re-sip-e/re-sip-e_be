@@ -29,13 +29,7 @@ module Types
     end
 
     def api_drinks(query:)
-      drink_search = CocktailFacade.by_name(query) 
-# require "pry"; binding.pry
-#       if drink_search != nil
-#         drink_search
-#       else
-#         {data: "no drinks found"}
-#       end
+      drink_search = CocktailFacade.by_name(query)
     end
 
     field :api_drink, Types::DrinkType, null: true do
