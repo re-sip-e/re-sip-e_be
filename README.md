@@ -1,4 +1,4 @@
-# re•sip•e BE
+# re•sip•e Backend API
 
 <div align="center">
   <a href="https://github.com/re-sip-e">
