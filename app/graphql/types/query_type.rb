@@ -29,7 +29,13 @@ module Types
     end
 
     def api_drinks(query:)
-      CocktailFacade.by_name(query)
+      drink_search = CocktailFacade.by_name(query) 
+# require "pry"; binding.pry
+#       if drink_search != nil
+#         drink_search
+#       else
+#         {data: "no drinks found"}
+#       end
     end
 
     field :api_drink, Types::DrinkType, null: true do
@@ -54,7 +60,7 @@ module Types
       Bar.find(id)
     end
 
-    field :user, Types::UserType, null:false do 
+    field :user, Types::UserType, null:false do
       argument :id, ID, required: true
     end
 
