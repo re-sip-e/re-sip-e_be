@@ -69,6 +69,29 @@ RSpec.describe Types::DrinkType, type: :request do
   end
 
   describe 'Edge Case' do
+    it 'If a search is done that provides no results an error message is recieved', :vcr do
+
+      query_drinks_api_no_response = <<~GQL
+        query {
+          apiDrinks(query: "potato") {
+            id
+            name
+            imgUrl
+            steps
+            ingredients {
+              description
+            }
+          }
+        }
+      GQL
+
+      post '/graphql', params: { query: query_drinks_api_no_response }
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to be_successful
+      expect(result[:errors][0][:message]).to eq("Couldn't find Cocktail with 'name'=potato")
+    end
+
+
     it 'If Cocktail DB API is not responsive an Error is returned in GraphQL' do
       stub_request(:get, 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=negroni').to_return(status: 500)
 
