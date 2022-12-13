@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.thecocktaildb.com/api/json/v1/1/search.php?s=potato
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 13 Dec 2022 18:17:24 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '15'
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/7.4.33
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=GIRHFHSxKo4K0jCemPwJE6MblaIIek%2FUfv4ADpb14a3MHb9CsjZs2PHimY%2BETbPtBg6Hs8TpZ9xUuLjy%2BVQmQobsTYyW2dDOJwssz2drtJ91dKr1FvF9dgQrvpZwW4QouJPC7twwm%2BE%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7790b2475b83677a-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: UTF-8
+      string: '{"drinks":null}'
+  recorded_at: Tue, 13 Dec 2022 18:17:24 GMT
+recorded_with: VCR 6.1.0
