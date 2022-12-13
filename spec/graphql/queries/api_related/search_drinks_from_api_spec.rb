@@ -88,7 +88,9 @@ RSpec.describe Types::DrinkType, type: :request do
       post '/graphql', params: { query: query_drinks_api_no_response }
       result = JSON.parse(response.body, symbolize_names: true)
       expect(response).to be_successful
-      expect(result[:errors][0][:message]).to eq("Couldn't find Cocktail with 'name'=potato")
+      
+      expected = { data: { apiDrinks: [] } }
+      expect(result).to eq(expected)
     end
 
 

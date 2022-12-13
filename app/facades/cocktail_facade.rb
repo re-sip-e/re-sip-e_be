@@ -1,9 +1,7 @@
 class CocktailFacade
   def self.by_name(query)
     cocktails = CocktailService.get_search_results(query)[:drinks]
-    raise ActiveRecord::RecordNotFound, "Couldn't find Cocktail with 'name'=#{query}" unless cocktails
-    
-    cocktails.map do |cocktail|
+    cocktails.to_a.map do |cocktail|
       create_drink(cocktail)
     end
   end
