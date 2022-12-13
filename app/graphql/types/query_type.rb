@@ -29,7 +29,7 @@ module Types
     end
 
     def api_drinks(query:)
-      drink_search = CocktailFacade.by_name(query)
+      CocktailFacade.by_name(query)
     end
 
     field :api_drink, Types::DrinkType, null: true do
