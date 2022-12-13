@@ -17,8 +17,8 @@
 Organization on GitHub: [re-sip-e](https://github.com/re-sip-e) <br>
 Backend Repo: [BE](https://github.com/re-sip-e/re-sip-e_be) <br>
 Frontend Repo: [FE](https://github.com/re-sip-e/re-sip-e_fe) <br>
-Backend Deployed on Fly.io: [Fly.io](https://re-sip-e-be.fly.dev/graphiql) <br>
-Frontend Deployed on Netlify: [Netlify](https://re-sip-e.netlify.app)
+Backend Deployed to: [Fly.io](https://re-sip-e-be.fly.dev/graphiql) <br>
+Frontend Deployed to: [Netlify](https://re-sip-e.netlify.app)
 -----
 
 </center>
