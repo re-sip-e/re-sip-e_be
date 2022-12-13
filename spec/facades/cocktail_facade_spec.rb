@@ -8,4 +8,5 @@ RSpec.describe CocktailFacade do
       expect(cocktail).to be_a Drink
     end
   end
+
 end
