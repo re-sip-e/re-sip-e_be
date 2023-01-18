@@ -5,11 +5,13 @@ RSpec.describe Types::BarType, type: :request do
     @user = create(:user)
     @bar_1 = create(:bar)
     @bar_user_1= create(:bar_user, bar: @bar_1, user: @user)
+    @bar_1.drinks.destroy_all
     @drink_1 = create(:drink, bar: @bar_1)
     @drink_2 = create(:drink, bar: @bar_1)
 
     @bar_2 = create(:bar)
     @bar_user_2= create(:bar_user, bar: @bar_2, user: @user)
+    @bar_2.drinks.destroy_all
     @drink_3 = create(:drink, bar: @bar_2)
     @drink_4 = create(:drink, bar: @bar_2)
     @drink_5 = create(:drink, bar: @bar_2)
