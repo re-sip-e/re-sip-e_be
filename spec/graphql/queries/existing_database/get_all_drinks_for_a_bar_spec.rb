@@ -115,10 +115,16 @@ RSpec.describe Types::DrinkType, type: :request do
 
   describe 'edge case' do
     it 'will return results even if duplicate fields are queried' do
+      @bar_1 = create(:bar)
+      drink_1 = create(:drink, name: "Aviation", bar: @bar_1)
+      drink_2 = create(:drink, name: "Whiskey Sour", bar: @bar_1)
+      ingredients_1 = drink_1.ingredients
+      ingredients_2 = drink_2.ingredients
+
       def query_dup_fields_for_bar_drinks
         <<~GQL
           query {
-            drinks(barId: "#{@bar.id}") {
+            drinks(barId: "#{@bar_1.id}") {
               id
               id
               name
@@ -158,40 +164,40 @@ RSpec.describe Types::DrinkType, type: :request do
 
       expected = {"data" =>
       {"drinks" =>
-        [{"id" => "#{@drinks[0].id}",
-          "name" => "#{@drinks[0].name}",
-          "imgUrl" => "#{@drinks[0].img_url}",
-          "steps" => "#{@drinks[0].steps}",
-          "createdAt" => "#{@drinks[0].created_at.iso8601}",
-          "updatedAt" => "#{@drinks[0].updated_at.iso8601}",
-          "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=> @bar.drink_count},
+        [{"id" => "#{drink_1.id}",
+          "name" => "#{drink_1.name}",
+          "imgUrl" => "#{drink_1.img_url}",
+          "steps" => "#{drink_1.steps}",
+          "createdAt" => "#{drink_1.created_at.iso8601}",
+          "updatedAt" => "#{drink_1.updated_at.iso8601}",
+          "bar" => {"id"=>"#{@bar_1.id}", "name"=>"#{@bar_1.name}", "drinkCount"=> @bar_1.drink_count},
           "ingredients" =>
-        [{"description" => "#{@ingredients1[0].description}",
-          "createdAt" => "#{@ingredients1[0].created_at.iso8601}",
-          "updatedAt" => "#{@ingredients1[0].updated_at.iso8601}"},
-         {"description" => "#{@ingredients1[1].description}",
-          "createdAt" => "#{@ingredients1[1].created_at.iso8601}",
-          "updatedAt" => "#{@ingredients1[1].updated_at.iso8601}"},
-         {"description" => "#{@ingredients1[2].description}",
-          "createdAt" => "#{@ingredients1[2].created_at.iso8601}",
-          "updatedAt" => "#{@ingredients1[2].updated_at.iso8601}"}]},
-         {"id" => "#{@drinks[1].id}",
-          "name" => "#{@drinks[1].name}",
-          "imgUrl" => "#{@drinks[1].img_url}",
-          "steps" => "#{@drinks[1].steps}",
-          "createdAt" => "#{@drinks[1].created_at.iso8601}",
-          "updatedAt" => "#{@drinks[1].updated_at.iso8601}",
-          "bar" => {"id"=>"#{@bar.id}", "name"=>"#{@bar.name}", "drinkCount"=>@bar.drink_count},
+        [{"description" => "#{ingredients_1[0].description}",
+          "createdAt" => "#{ingredients_1[0].created_at.iso8601}",
+          "updatedAt" => "#{ingredients_1[0].updated_at.iso8601}"},
+         {"description" => "#{ingredients_1[1].description}",
+          "createdAt" => "#{ingredients_1[1].created_at.iso8601}",
+          "updatedAt" => "#{ingredients_1[1].updated_at.iso8601}"},
+         {"description" => "#{ingredients_1[2].description}",
+          "createdAt" => "#{ingredients_1[2].created_at.iso8601}",
+          "updatedAt" => "#{ingredients_1[2].updated_at.iso8601}"}]},
+         {"id" => "#{drink_2.id}",
+          "name" => "#{drink_2.name}",
+          "imgUrl" => "#{drink_2.img_url}",
+          "steps" => "#{drink_2.steps}",
+          "createdAt" => "#{drink_2.created_at.iso8601}",
+          "updatedAt" => "#{drink_2.updated_at.iso8601}",
+          "bar" => {"id"=>"#{@bar_1.id}", "name"=>"#{@bar_1.name}", "drinkCount"=>@bar_1.drink_count},
           "ingredients" =>
-         [{"description" => "#{@ingredients2[0].description}",
-           "createdAt" => "#{@ingredients2[0].created_at.iso8601}",
-           "updatedAt" => "#{@ingredients2[0].updated_at.iso8601}"},
-          {"description" => "#{@ingredients2[1].description}",
-           "createdAt" => "#{@ingredients2[1].created_at.iso8601}",
-           "updatedAt" => "#{@ingredients2[1].updated_at.iso8601}"},
-          {"description" => "#{@ingredients2[2].description}",
-           "createdAt" => "#{@ingredients2[2].created_at.iso8601}",
-           "updatedAt" => "#{@ingredients2[2].updated_at.iso8601}"}]}]}}
+         [{"description" => "#{ingredients_2[0].description}",
+           "createdAt" => "#{ingredients_2[0].created_at.iso8601}",
+           "updatedAt" => "#{ingredients_2[0].updated_at.iso8601}"},
+          {"description" => "#{ingredients_2[1].description}",
+           "createdAt" => "#{ingredients_2[1].created_at.iso8601}",
+           "updatedAt" => "#{ingredients_2[1].updated_at.iso8601}"},
+          {"description" => "#{ingredients_2[2].description}",
+           "createdAt" => "#{ingredients_2[2].created_at.iso8601}",
+           "updatedAt" => "#{ingredients_2[2].updated_at.iso8601}"}]}]}}
 
       post '/graphql', params: {query: query_dup_fields_for_bar_drinks}
       results = JSON.parse(response.body)
