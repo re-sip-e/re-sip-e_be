@@ -13,7 +13,7 @@ module Types
 
     def drinks(bar_id:)
       bar = Bar.find(bar_id)
-      bar.drinks
+      bar.drinks.order(:name)
     end
 
     field :drink, Types::DrinkType, null: false do
