@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe Mutations::DeleteDrink, type: :request do
   describe 'happy path' do
     it 'can delete a drink provided drink id' do
-      drink1 = create(:drink)
+      bar = create(:bar)
+      bar.drinks.destroy_all
+      drink1 = create(:drink, bar: bar)
 
       query_delete_drink = <<~GQL
         mutation{
@@ -27,7 +29,9 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
     end
 
     it 'deletes all drink ingredients when deleting a drink ' do
-      drink1 = create(:drink)
+      bar = create(:bar)
+      bar.drinks.destroy_all
+      drink1 = create(:drink, bar: bar)
       ingredients = drink1.ingredients
 
       query_delete_drink = <<~GQL
@@ -57,7 +61,9 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
 
   describe 'sad path' do
     it 'It does not delete any drinks if no drink Id is provided and a no drink found error is provided' do
-      drinks = create_list(:drink, 5)
+      bar = create(:bar)
+      bar.drinks.destroy_all
+      drinks = create_list(:drink, 5,  bar: bar)
 
       query_invalid_delete_drink = <<~GQL
         mutation{
@@ -84,8 +90,10 @@ RSpec.describe Mutations::DeleteDrink, type: :request do
       expect(Drink.all.count).to eq(5)
     end
 
-    it 'It does not delete any drinks if an invalid drink id is provided and a no drink found error is provided' do
-      drinks = create_list(:drink, 5)
+    it 'It does not delete any drinks if an invalid drink id is provided and a no drink found error is provided' do\
+      bar = create(:bar)
+      bar.drinks.destroy_all
+      drinks = create_list(:drink, 5, bar: bar)
 
       query_invalid_delete_drink = <<~GQL
         mutation{

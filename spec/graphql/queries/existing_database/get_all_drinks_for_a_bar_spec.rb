@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Types::DrinkType, type: :request do
   before :each do
     @bar = create(:bar)
+    @bar.drinks.destroy_all
     @drinks = create_list(:drink, 2, bar: @bar)
     @ingredients1 = @drinks[0].ingredients
     @ingredients2 = @drinks[1].ingredients
