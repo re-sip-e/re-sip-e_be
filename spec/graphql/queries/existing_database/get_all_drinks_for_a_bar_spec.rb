@@ -9,6 +9,7 @@ RSpec.describe Types::DrinkType, type: :request do
     @drink_2 = create(:drink, name: "Margarita", bar: @bar)
     @ingredients1 = @drink_1.ingredients
     @ingredients2 = @drink_2.ingredients
+    @bar.reload
   end
 
   describe 'happy path' do
@@ -87,6 +88,7 @@ RSpec.describe Types::DrinkType, type: :request do
       @drink_2 = create(:drink, name: "Bloody Mary", bar: @bar)
       @drink_3 = create(:drink, name: "Bee's Knees", bar: @bar)
       @drink_4 = create(:drink, name: "Manhattan", bar: @bar)
+      @bar.reload
 
       def query_drinks
         <<~GQL
