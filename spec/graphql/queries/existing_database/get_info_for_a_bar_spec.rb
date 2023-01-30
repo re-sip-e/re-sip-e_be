@@ -193,7 +193,7 @@ RSpec.describe Types::BarType, type: :request do
             drinkCount
             drinks{
             name
-              name
+            name
             }
           }
         }
